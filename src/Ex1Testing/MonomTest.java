@@ -121,36 +121,6 @@ class MonomTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-<<<<<<< HEAD
-	void testWait() {
-=======
-	void testWaitLong() {
->>>>>>> 54aeef9b39620f110cf6a5d8c140ca3b0e190d2c
-		fail("Not yet implemented");
-	}
 
-	@Test
-<<<<<<< HEAD
-	void testWaitLong() {
-=======
-	void testWaitLongInt() {
->>>>>>> 54aeef9b39620f110cf6a5d8c140ca3b0e190d2c
-		fail("Not yet implemented");
-	}
-
-	@Test
-<<<<<<< HEAD
-	void testWaitLongInt() {
-=======
-	void testWait() {
->>>>>>> 54aeef9b39620f110cf6a5d8c140ca3b0e190d2c
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testFinalize() {
-		fail("Not yet implemented");
-	}
 
 }

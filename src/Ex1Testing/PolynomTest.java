@@ -4,163 +4,92 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import Ex1.Monom;
+import Ex1.Polynom;
+
 class PolynomTest {
 
 	@Test
-	void testPolynom() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	void testPolynomString() {
-		fail("Not yet implemented");
+		Polynom p1= new Polynom ("2x^2-2x+3");
+		
 	}
 
-	@Test
-	void testF() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testAddPolynom_able() {
-		fail("Not yet implemented");
+		Polynom actual= new Polynom ("2x^2-2x+3");
+		Polynom p2= new Polynom ("4x^2+4");
+		Polynom expected=new Polynom ("6x^2-2x+6");
+		actual.add(p2);
+		assertEquals(expected, actual, "Test Add with two polynoms");
 	}
 
 	@Test
 	void testAddMonom() {
-		fail("Not yet implemented");
+		Polynom actual= new Polynom ("2x^2-2x+3");
+		Monom m=new Monom ("2");
+		Polynom expected=new Polynom ("2x^2-2x+5");
+		actual.add(m);
+		assertEquals(expected, actual, "Test Add Polynom with Monom");
 	}
 
 	@Test
 	void testSubstract() {
-		fail("Not yet implemented");
+		Polynom actual= new Polynom ("2x^2-2x+3");
+		Polynom p2= new Polynom ("4x^2+4");
+		Polynom expected=new Polynom ("-2x^2-2x-1");
+		actual.substract(p2);
+		assertEquals(expected, actual, "Test Substract with two polynoms");
 	}
 
 	@Test
 	void testMultiplyPolynom_able() {
-		fail("Not yet implemented");
+		Polynom actual= new Polynom ("2x^2-2x+3");
+		Polynom p2= new Polynom ("2");
+		Polynom expected=new Polynom ("4x^2-4x+6");
+		actual.add(p2);
+		assertEquals(expected, actual, "Test multiply with two polynoms");
 	}
 
 	@Test
 	void testEqualsObject() {
-		fail("Not yet implemented");
+		Polynom p1 = new Polynom("2x^2");
+		Object p2 = new Polynom("2x^2");
+		Object p3= new Object();
+
+		System.out.println("p1.equals(p2)="+p1.equals(p2));
+		System.out.println("p1.equals(p3)="+p1.equals(p3));
+
 	}
 
-	@Test
-	void testIsZero() {
-		fail("Not yet implemented");
-	}
+@Test
+void testRoot() {
+	fail("Not yet implemented");
+}
 
-	@Test
-	void testRoot() {
-		fail("Not yet implemented");
-	}
+@Test
+void testCopy() {
+	fail("Not yet implemented");
+}
 
-	@Test
-	void testCopy() {
-		fail("Not yet implemented");
-	}
+@Test
+void testDerivative() {
+	fail("Not yet implemented");
+}
 
-	@Test
-	void testDerivative() {
-		fail("Not yet implemented");
-	}
+@Test
+void testArea() {
+	fail("Not yet implemented");
+}
 
-	@Test
-	void testArea() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	void testIteretor() {
-		fail("Not yet implemented");
-	}
+@Test
+void testMultiplyMonom() {
+	fail("Not yet implemented");
+}
 
-	@Test
-	void testMultiplyMonom() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testToString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testInitFromString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testObject() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetClass() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testHashCode() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testEqualsObject1() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testClone() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testToString1() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testNotify() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testNotifyAll() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-<<<<<<< HEAD
-	void testWait() {
-=======
-	void testWaitLong() {
->>>>>>> 54aeef9b39620f110cf6a5d8c140ca3b0e190d2c
-		fail("Not yet implemented");
-	}
-
-	@Test
-<<<<<<< HEAD
-	void testWaitLong() {
-=======
-	void testWaitLongInt() {
->>>>>>> 54aeef9b39620f110cf6a5d8c140ca3b0e190d2c
-		fail("Not yet implemented");
-	}
-
-	@Test
-<<<<<<< HEAD
-	void testWaitLongInt() {
-=======
-	void testWait() {
->>>>>>> 54aeef9b39620f110cf6a5d8c140ca3b0e190d2c
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testFinalize() {
-		fail("Not yet implemented");
-	}
-
+@Test
+void testToString() {
+	fail("Not yet implemented");
 }

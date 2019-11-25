@@ -123,13 +123,17 @@ public class Monom implements function{
 		return ans;
 	}
 	//**boolean function Compares the monoms up to epsilon
-	public boolean equals(Monom m)
+	public boolean equals(Object m)
 	{
-		if(Math.abs(m.get_coefficient()-this.get_coefficient())>=EPSILON)
+		if(!(m instanceof Monom)) {
 			return false;
-		if((m.get_coefficient()==0)&&(this.get_coefficient())==0)
+		}
+		Monom m1=(Monom) m;
+		if(Math.abs(m1.get_coefficient()-this.get_coefficient())>=EPSILON)
+			return false;
+		if((m1.get_coefficient()==0)&&(this.get_coefficient())==0)
 			return true;
-		if(m.get_power() !=this.get_power())
+		if(m1.get_power() !=this.get_power())
 			return false;
 		return true;
 
