@@ -11,7 +11,7 @@ class PolynomTest {
 
 	@Test
 	void testPolynomString() {
-		Polynom p1= new Polynom ("2x^2-2x+3");
+		Polynom p1= new Polynom ("-2x^2-2x+3");
 		
 	}
 
@@ -37,10 +37,10 @@ class PolynomTest {
 	@Test
 	void testSubstract() {
 		Polynom actual= new Polynom ("2x^2-2x+3");
-		Polynom p2= new Polynom ("4x^2+4");
-		Polynom expected=new Polynom ("-2x^2-2x-1");
+		Polynom p2= new Polynom ("3");
+		Polynom expected=new Polynom ("2x^2-2x+3");
 		actual.substract(p2);
-		System.out.println("actual.substract(p2)"+actual.toString());
+		System.out.println("actual.substract(p2) "+actual.toString());
 		assertEquals(expected, actual, "Test Substract with two polynoms");
 	}
 

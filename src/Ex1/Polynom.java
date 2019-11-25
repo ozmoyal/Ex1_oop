@@ -49,7 +49,7 @@ import Ex1.Monom;
 		monoms=new ArrayList<Monom>();
 		String str = ""+s.charAt(0);
 		int j=0;
-		for (int i = 0; i < s.length(); i++) {
+		for (int i = 1; i < s.length(); i++) {
 			if(s.charAt(i) == '+' || s.charAt(i) == '-') {
 				str =str+ s.substring(j,i);
 				Monom sub = new Monom(str);

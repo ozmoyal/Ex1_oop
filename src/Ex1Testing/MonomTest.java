@@ -4,122 +4,50 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import Ex1.Monom;
+import Ex1.Polynom;
+
 class MonomTest {
 
-	@Test
-	void testGetComp() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testMonomDoubleInt() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testMonomMonom() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGet_coefficient() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGet_power() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testDerivative() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testF() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testIsZero() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testMonomString() {
-		fail("Not yet implemented");
+		Monom zero= new Monom ("0");
+		System.out.println("zero.isZero() ? "+zero.isZero());
 	}
 
 	@Test
 	void testAdd() {
-		fail("Not yet implemented");
+		Monom actual= new Monom ("2x^2");
+		Monom m=new Monom ("2x^2");
+		Monom expected=new Monom ("4x^2");
+		actual.add(m);
+		assertEquals(expected, actual, "Test Add Polynom with Monom");
 	}
 
 	@Test
 	void testMultipy() {
-		fail("Not yet implemented");
+		Monom actual= new Monom ("2x^2");
+		Monom m=new Monom ("2x^2");
+		Monom expected=new Monom ("4x^4");
+		actual.multipy(m);
+		assertEquals(expected, actual, "Test Multiply Polynom with Monom");
 	}
 
-	@Test
-	void testToString() {
-		fail("Not yet implemented");
-	}
+	
 
 	@Test
 	void testEqualsMonom() {
-		fail("Not yet implemented");
+			Monom actual= new Monom ("2x^2");
+		Monom m=new Monom ("2x^2");
+		Monom expected=new Monom ("4x^4");
+		actual.multipy(m);
+		System.out.println("actual.equals(expected) ?"+actual.equals(expected) );
 	}
+		
 
-	@Test
-	void testInitFromString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testCopy() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testObject() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetClass() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testHashCode() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testEqualsObject() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testClone() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testToString1() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testNotify() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testNotifyAll() {
-		fail("Not yet implemented");
-	}
+	
+	
 
 
 
