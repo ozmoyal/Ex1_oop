@@ -187,6 +187,9 @@ import Ex1.Monom;
 	 */
 	@Override
 	public boolean equals(Object p1) {
+		if(!(p1 instanceof Polynom_able)) {
+			return false;
+		}
 		Iterator<Monom> it=((Polynom) p1).iteretor();
 		Monom m=it.next();
 		int i=0;

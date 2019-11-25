@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import Ex1.Polynom;
+
 class PolynomTest {
 
 	@Test
@@ -43,7 +45,11 @@ class PolynomTest {
 
 	@Test
 	void testEqualsObject() {
-		fail("Not yet implemented");
+		Object p1 = new Polynom("2x^2");
+		Object p2 = new Object();
+		if(!p1.equals(p2)) {
+		fail("error");
+		}
 	}
 
 	@Test
@@ -71,10 +77,6 @@ class PolynomTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	void testIteretor() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testMultiplyMonom() {
@@ -85,70 +87,4 @@ class PolynomTest {
 	void testToString() {
 		fail("Not yet implemented");
 	}
-
-	@Test
-	void testInitFromString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testObject() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetClass() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testHashCode() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testEqualsObject1() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testClone() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testToString1() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testNotify() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testNotifyAll() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testWaitLong() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testWaitLongInt() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testWait() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testFinalize() {
-		fail("Not yet implemented");
-	}
-
 }
