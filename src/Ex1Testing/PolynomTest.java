@@ -1,9 +1,7 @@
 package Ex1Testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import Ex1.Monom;
 import Ex1.Polynom;
 
@@ -30,16 +28,17 @@ class PolynomTest {
 		Monom m = new Monom ("2");
 		Polynom expected = new Polynom ("2x^2-2x+5");
 		actual.add(m);
+		System.out.println(actual.toString());
 		assertEquals(expected, actual, "Add monom fail");
 	}
 
 	@Test
 	void testSubstract() {
-		Polynom actual = new Polynom ("2x^2-2x+3");
-		Polynom p2 = new Polynom ("4x^2+4");
-		Polynom expected = new Polynom ("-2x^2-2x-1");
-		actual.substract(p2);
-		assertEquals(expected, actual, "Substract fail");
+		Polynom p1 = new Polynom("5x^2+4x+3");
+		Polynom p2 = new Polynom("5x^2+4x+3");
+		Polynom p3 = new Polynom("0");
+		p1.substract(p2);
+		assertEquals(p1,p3,"error");
 	}
 
 	@Test
@@ -47,7 +46,7 @@ class PolynomTest {
 		Polynom actual= new Polynom ("2x^2-2x+3");
 		Polynom p2= new Polynom ("2");
 		Polynom expected=new Polynom ("4x^2-4x+6");
-		actual.add(p2);
+		actual.multiply(p2);
 		assertEquals(expected, actual, "multiply fail");
 	}
 
