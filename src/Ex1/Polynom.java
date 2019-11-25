@@ -186,8 +186,9 @@ import Ex1.Monom;
 	 * @return true or false
 	 */
 	@Override
-	public boolean equals(Object p1 ) {
-		Iterator<Monom> it=((Polynom)p1).iteretor();
+
+	public boolean equals(Object p1) {
+		Iterator<Monom> it=((Polynom) p1).iteretor();
 		Monom m=it.next();
 		int i=0;
 		for(;i<monoms.size()&&it.hasNext();i++)
