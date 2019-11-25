@@ -186,8 +186,8 @@ import Ex1.Monom;
 	 * @return true or false
 	 */
 	@Override
-	public boolean equals(Polynom_able p1) {
-		Iterator<Monom> it=p1.iteretor();
+	public boolean equals(Object p1) {
+		Iterator<Monom> it=((Polynom) p1).iteretor();
 		Monom m=it.next();
 		int i=0;
 		for(;i<monoms.size()&&it.hasNext();i++)
@@ -314,5 +314,11 @@ import Ex1.Monom;
 			}
 		}
 		return ans;
+	}
+
+	@Override
+	public function initFromString(String s) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
