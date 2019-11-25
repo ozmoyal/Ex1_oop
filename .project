@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/Ex1Testing/Functions_GUITest.java</name>
-			<type>1</type>
-			<locationURI>PARENT-3-PROJECT_LOC/Desktop/Functions_GUITest.java</locationURI>
-		</link>
-	</linkedResources>
 </projectDescription>

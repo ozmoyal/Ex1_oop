@@ -60,7 +60,6 @@ class PolynomTest {
 		System.out.println("p1.equals(p3)="+p1.equals(p3));
 	}
 
-<<<<<<< HEAD
 	@Test
 	void testRoot() {
 		Polynom p1 = new Polynom("1.5x^2-8-5x");
@@ -68,15 +67,6 @@ class PolynomTest {
 		System.out.println(" "+p1.root(-2, 1, Monom.EPSILON));
 		assertEquals(-1.181334582, p1.root(-2, 1, Monom.EPSILON), "root fail");
 	}
-=======
-@Test
-void testRoot() {
-	Polynom p1 = new Polynom("1.5x^2-8-5x");
-	Monom p2 = new Monom("2");
-	System.out.println(" "+p1.root(-2, 1, Monom.EPSILON));
-	assertEquals(-1.181334582, p1.root(-2, 1, Monom.EPSILON), "root fail");
-}
->>>>>>> 525d0ed1864ceddbe094724eae3b97bcbdafd3f6
 
 	@Test
 	void testCopy() {
@@ -99,15 +89,9 @@ void testRoot() {
 		fail("Not yet implemented");
 	}
 
-<<<<<<< HEAD
 	@Test
 	void testToString() {
 		fail("Not yet implemented");
 	}
 }
-=======
-@Test
-void testToString() {
-	fail("Not yet implemented");
-}}
->>>>>>> 525d0ed1864ceddbe094724eae3b97bcbdafd3f6
+
