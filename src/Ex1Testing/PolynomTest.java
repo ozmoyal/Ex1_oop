@@ -57,7 +57,6 @@ class PolynomTest {
 		Polynom p1 = new Polynom("2x^2");
 		Object p2 = new Polynom("2x^2");
 		Object p3= new Object();
-
 		System.out.println("p1.equals(p2)="+p1.equals(p2));
 		System.out.println("p1.equals(p3)="+p1.equals(p3));
 
@@ -65,7 +64,10 @@ class PolynomTest {
 
 @Test
 void testRoot() {
-	fail("Not yet implemented");
+	Polynom p1 = new Polynom("1.5x^2-8-5x");
+	Monom p2 = new Monom("2");
+	System.out.println(" "+p1.root(-2, 1, Monom.EPSILON));
+	assertEquals(-1.181334582, p1.root(-2, 1, Monom.EPSILON), "root fail");
 }
 
 @Test
@@ -92,4 +94,4 @@ void testMultiplyMonom() {
 @Test
 void testToString() {
 	fail("Not yet implemented");
-}
+}}
