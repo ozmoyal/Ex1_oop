@@ -9,7 +9,7 @@ class PolynomTest {
 
 	@Test
 	void testPolynomString() {
-		Polynom p1= new Polynom ("2x^2-2x+3");
+		Polynom p1= new Polynom ("-2x^2-2x+3");
 	}
 
 
@@ -34,20 +34,22 @@ class PolynomTest {
 
 	@Test
 	void testSubstract() {
-		Polynom p1 = new Polynom("5x^2+4x+3");
-		Polynom p2 = new Polynom("5x^2+4x+3");
-		Polynom p3 = new Polynom("0");
-		p1.substract(p2);
-		assertEquals(p1,p3,"error");
+		Polynom actual= new Polynom ("2x^2-2x+3");
+		Polynom p2= new Polynom ("-3");
+		Polynom expected=new Polynom ("2x^2-2x+6");
+		actual.substract(p2);
+		System.out.println("actual.substract(p2) "+actual.toString());
+		assertEquals(expected, actual, "Test Substract with two polynoms");
 	}
-
+	
 	@Test
 	void testMultiplyPolynom_able() {
-		Polynom actual= new Polynom ("2x^2-2x+3");
-		Polynom p2= new Polynom ("2");
-		Polynom expected=new Polynom ("4x^2-4x+6");
-		actual.multiply(p2);
-		assertEquals(expected, actual, "multiply fail");
+		Polynom p1 = new Polynom ("2x^2-2x+3");
+		Polynom p2 = new Polynom ("3x");
+		Polynom p3 = new Polynom ("6x^3-6x^2+9x");
+		p1.multiply(p2);
+		assertEquals(p3,p3,"right");
+		assertEquals(p3,p1,"errwwor");
 	}
 
 	@Test
