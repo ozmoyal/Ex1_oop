@@ -50,6 +50,7 @@ class PolynomTest {
 		Polynom p2= new Polynom ("2");
 		Polynom expected=new Polynom ("4x^2-4x+6");
 		actual.multiply(p2);
+		System.out.println(actual.toString());
 		assertEquals(expected, actual, "Test multiply with two polynoms");
 	}
 

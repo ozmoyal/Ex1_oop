@@ -31,6 +31,7 @@ class MonomTest {
 		Monom m=new Monom ("2x^2");
 		Monom expected=new Monom ("4x^4");
 		actual.multipy(m);
+		System.out.println(actual.toString());
 		assertEquals(expected, actual, "Test Multiply Polynom with Monom");
 	}
 
