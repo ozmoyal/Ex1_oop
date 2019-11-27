@@ -39,9 +39,9 @@ class MonomTest {
 
 	@Test
 	void testEqualsMonom() {
-			Monom actual= new Monom ("2x^2");
-		Monom m=new Monom ("2x^2");
-		Monom expected=new Monom ("4x^4");
+		Monom actual= new Monom("2x^2");
+		Monom m=new Monom("2x^2");
+		Monom expected=new Monom("4x^4");
 		actual.multipy(m);
 		System.out.println("actual.equals(expected) ?"+actual.equals(expected) );
 	}
