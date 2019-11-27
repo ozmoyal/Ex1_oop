@@ -80,7 +80,7 @@ class PolynomTest {
 	void testDerivative() {
 		Polynom actual= new Polynom ("2x^2-2x+3");
 		actual=(Polynom)actual.derivative();
-		Polynom expected=new Polynom ("4x-2");
+		Polynom expected=new Polynom ("4x-2+3");
 		assertEquals(expected, actual, "Add polynoms fail");
 	}
 
