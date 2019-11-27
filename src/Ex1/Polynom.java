@@ -176,6 +176,7 @@ import Ex1.Monom;
 				ans.add(m);
 			}
 		}
+		ans.cleanZeros();
 		monoms=ans.monoms;
 		monoms.sort(Monom._Comp);
 	}
@@ -258,7 +259,11 @@ import Ex1.Monom;
 	public Polynom_able derivative() {
 		Polynom_able div = new Polynom();
 		for(int i=0;i<monoms.size();i++)
-			div.add(monoms.get(i).derivative());
+			{
+			Monom m=monoms.get(i).derivative();
+			if(!m.isZero())
+			div.add(m);
+			}
 		return div;
 	}
 
@@ -297,6 +302,7 @@ import Ex1.Monom;
 		monoms.sort(Monom._Comp);
 
 	}
+	
 
 	/**
 	 * provide a String representation of this polynom. mostly for debugging
@@ -318,6 +324,17 @@ import Ex1.Monom;
 			}
 		}
 		return ans;
+	}
+	public void  cleanZeros()
+	{
+		for(int i=0;i<monoms.size();i++)
+		{
+			if(monoms.get(i).isZero())
+				monoms.remove(i);
+		}
+		if(monoms.isEmpty())
+			monoms.add(new Monom(Monom.ZERO));
+			
 	}
 
 	@Override
