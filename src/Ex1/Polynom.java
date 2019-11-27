@@ -1,10 +1,8 @@
 package Ex1;
 
 import java.util.ArrayList;
-
 import java.util.Iterator;
 import java.util.function.Predicate;
-
 import Ex1.Monom;
 /**
  * This class represents a Polynom with add, multiply functionality, it also should support the following:
@@ -176,8 +174,10 @@ import Ex1.Monom;
 				ans.add(m);
 			}
 		}
+		ans.cleanZeros();
 		monoms=ans.monoms;
 		monoms.sort(Monom._Comp);
+		
 	}
 
 	/**
@@ -259,6 +259,7 @@ import Ex1.Monom;
 		Polynom_able div = new Polynom();
 		for(int i=0;i<monoms.size();i++)
 			div.add(monoms.get(i).derivative());
+		div.cleanZeros();
 		return div;
 	}
 
@@ -319,10 +320,22 @@ import Ex1.Monom;
 		}
 		return ans;
 	}
-
+	
 	@Override
 	public function initFromString(String s) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void cleanZeros() {
+			for (int i = 0; i < monoms.size(); i++) {
+				if(monoms.get(i).isZero()) {
+					monoms.remove(i);
+				}
+			}
+			if(monoms.isEmpty()) {
+				monoms.add(new Monom(Monom.ZERO));
+			}
+		}
 }

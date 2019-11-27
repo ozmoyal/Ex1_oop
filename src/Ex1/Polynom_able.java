@@ -86,4 +86,8 @@ public interface Polynom_able extends cont_function{
 	 * @return
 	 */
 	public Iterator<Monom> iteretor();
+	/**
+	 * remove zeros from polynom
+	 */
+	public  void cleanZeros();
 }

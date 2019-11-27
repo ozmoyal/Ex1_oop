@@ -79,7 +79,10 @@ class PolynomTest {
 
 	@Test
 	void testDerivative() {
-		fail("Not yet implemented");
+		Polynom p1 = new Polynom("3x^3+2x^2+5x+6");
+		p1 = (Polynom)p1.derivative();
+		Polynom p2 = new Polynom("9x^2+4x+4");
+		assertEquals(p1,p2,"Error");
 	}
 
 	@Test
