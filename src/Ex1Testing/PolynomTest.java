@@ -51,8 +51,7 @@ class PolynomTest {
 		p1.multiply(p2);
 		System.out.println(p1.toString());
 		System.out.println(p3.toString());
-		assertEquals(p3,p3,"right");
-		assertEquals(p3,p1,"errwwor");
+		assertEquals(p3,p1,"right");
 	}
 
 	@Test
@@ -79,10 +78,10 @@ class PolynomTest {
 
 	@Test
 	void testDerivative() {
-		Polynom p1 = new Polynom("3x^3+2x^2+5x+6");
-		p1 = (Polynom)p1.derivative();
-		Polynom p2 = new Polynom("9x^2+4x+4");
-		assertEquals(p1,p2,"Error");
+		Polynom actual= new Polynom ("2x^2-2x+3");
+		actual=(Polynom)actual.derivative();
+		Polynom expected=new Polynom ("4x-2");
+		assertEquals(expected, actual, "Add polynoms fail");
 	}
 
 	@Test

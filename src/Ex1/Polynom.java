@@ -19,7 +19,7 @@ import Ex1.Monom;
  * Each of those classes has a different method such as adding two Monoms with
  * the same power ,finding a derivative for a Polynom , multiply , equals , root , area etc.
  */
-    public class Polynom implements Polynom_able{
+public class Polynom implements Polynom_able{
 
 	private static final String Comperator  = null;
 	/**
@@ -177,7 +177,7 @@ import Ex1.Monom;
 		ans.cleanZeros();
 		monoms=ans.monoms;
 		monoms.sort(Monom._Comp);
-		
+
 	}
 
 	/**
@@ -258,8 +258,11 @@ import Ex1.Monom;
 	public Polynom_able derivative() {
 		Polynom_able div = new Polynom();
 		for(int i=0;i<monoms.size();i++)
-			div.add(monoms.get(i).derivative());
-		div.cleanZeros();
+		{
+			Monom m=monoms.get(i).derivative();
+			if(!m.isZero())
+				div.add(m);
+		}
 		return div;
 	}
 
@@ -299,6 +302,7 @@ import Ex1.Monom;
 
 	}
 
+
 	/**
 	 * provide a String representation of this polynom. mostly for debugging
 	 * @return polynom string
@@ -320,7 +324,7 @@ import Ex1.Monom;
 		}
 		return ans;
 	}
-	
+
 	@Override
 	public function initFromString(String s) {
 		// TODO Auto-generated method stub
@@ -329,13 +333,13 @@ import Ex1.Monom;
 
 	@Override
 	public void cleanZeros() {
-			for (int i = 0; i < monoms.size(); i++) {
-				if(monoms.get(i).isZero()) {
-					monoms.remove(i);
-				}
-			}
-			if(monoms.isEmpty()) {
-				monoms.add(new Monom(Monom.ZERO));
+		for (int i = 0; i < monoms.size(); i++) {
+			if(monoms.get(i).isZero()) {
+				monoms.remove(i);
 			}
 		}
+		if(monoms.isEmpty()) {
+			monoms.add(new Monom(Monom.ZERO));
+		}
+	}
 }
