@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import Ex1.Monom;
 import Ex1.Polynom;
+import Ex1.Polynom_able;
 
 class PolynomTest {
 
@@ -28,7 +29,7 @@ class PolynomTest {
 		Monom m = new Monom ("2");
 		Polynom expected = new Polynom ("2x^2-2x+5");
 		actual.add(m);
-		System.out.println(actual.toString());
+		//System.out.println(actual.toString());
 		assertEquals(expected, actual, "Add monom fail");
 	}
 
@@ -38,7 +39,7 @@ class PolynomTest {
 		Polynom p2= new Polynom ("-3");
 		Polynom expected=new Polynom ("2x^2-2x+6");
 		actual.substract(p2);
-		System.out.println("actual.substract(p2) "+actual.toString());
+		//System.out.println("actual.substract(p2) "+actual.toString());
 		assertEquals(expected, actual, "Test Substract with two polynoms");
 	}
 	
@@ -49,8 +50,8 @@ class PolynomTest {
 		Polynom p2 = new Polynom ("3x");
 		Polynom p3 = new Polynom ("6x^3-6x^2+9x");
 		p1.multiply(p2);
-		System.out.println(p1.toString());
-		System.out.println(p3.toString());
+		//System.out.println(p1.toString());
+		//System.out.println(p3.toString());
 		assertEquals(p3,p1,"right");
 	}
 
@@ -59,21 +60,22 @@ class PolynomTest {
 		Polynom p1 = new Polynom("2x^2");
 		Object p2 = new Polynom("2x^2");
 		Object p3= new Object();
-		System.out.println("p1.equals(p2)="+p1.equals(p2));
-		System.out.println("p1.equals(p3)="+p1.equals(p3));
+		//assertEpuals(p1,p2,"error");
+		//System.out.println("p1.equals(p2)="+p1.equals(p2));
+		//System.out.println("p1.equals(p3)="+p1.equals(p3));
 	}
 
 	@Test
 	void testRoot() {
-		Polynom p1 = new Polynom("1.5x^2-8-5x");
-		Monom p2 = new Monom("2");
-		System.out.println(" "+p1.root(-2, 1, Monom.EPSILON));
-		assertEquals(-1.181334582, p1.root(-2, 1, Monom.EPSILON), "root fail");
+		Polynom p1 = new Polynom("x^2-5x+6");
+		assertEquals(1.9999999403953552, p1.root(1, 2.5, Monom.EPSILON), "root fail");
 	}
 
 	@Test
 	void testCopy() {
-		fail("Not yet implemented");
+		Polynom p1 = new Polynom("3x^3+2x^2+x");
+		Polynom p2 = (Polynom)p1.copy();
+		assertEquals(p1,p2,"error");
 	}
 
 	@Test
@@ -81,12 +83,14 @@ class PolynomTest {
 		Polynom actual= new Polynom ("2x^2-2x+3");
 		actual=(Polynom)actual.derivative();
 		Polynom expected=new Polynom ("4x-2");
-		assertEquals(expected, actual, "Add polynoms fail");
+		assertEquals(expected, actual, "Add polynoms failed");
 	}
 
 	@Test
 	void testArea() {
-		fail("Not yet implemented");
+		Polynom p1 = new Polynom("2x^3+5x^2");
+		double ans = p1.area(-2.5,0,Monom.EPSILON);
+		assertEquals(ans,6.510416666675519,"error");
 	}
 
 
@@ -101,7 +105,9 @@ class PolynomTest {
 
 	@Test
 	void testToString() {
-		fail("Not yet implemented");
+		Polynom p1 = new Polynom("5x^3+4x^2-5");
+		String p2 = "5.0x^3+4.0x^2-5.0";
+		assertEquals(p1.toString(),p2);
 	}
 }
 

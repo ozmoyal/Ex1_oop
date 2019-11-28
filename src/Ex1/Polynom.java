@@ -244,9 +244,11 @@ public class Polynom implements Polynom_able{
 
 	@Override
 	public Polynom_able copy() {
-		Polynom_able cp=new Polynom();
-		for(int i=0;i<monoms.size();i++)
-			cp.add(monoms.get(i));
+		Polynom_able cp = new Polynom();
+		Iterator<Monom> it = this.iteretor();
+		while(it.hasNext()) {
+			cp.add(it.next());
+		}
 		return cp;
 	}
 
@@ -294,12 +296,16 @@ public class Polynom implements Polynom_able{
 
 	@Override
 	public void multiply(Monom m1) {
+		if(m1.isZero())
+			{
+			monoms.clear();
+			monoms.add(new Monom(Monom.ZERO));
+			}
 		for(Monom monoms:monoms)
 		{
 			monoms.multipy(m1);
 		}
 		monoms.sort(Monom._Comp);
-
 	}
 
 
@@ -315,7 +321,7 @@ public class Polynom implements Polynom_able{
 		{
 			if(!monoms.get(i).isZero())
 			{
-				str=monoms.get(i).toString();
+				str = monoms.get(i).toString();
 				if(monoms.get(i).get_coefficient()<0)
 					ans+=str;
 				else

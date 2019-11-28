@@ -115,7 +115,7 @@ public class Monom implements function{
 		if(this.get_coefficient()==0)
 			ans=""+0;
 		else if(this.get_power()==0)
-			ans=" "+String.valueOf(this.get_coefficient());
+			ans=""+String.valueOf(this.get_coefficient());
 		else if(this.get_power()==1)
 			ans=""+String.valueOf(this.get_coefficient())+'x';
 		else
@@ -155,14 +155,15 @@ public class Monom implements function{
 	private static Monom getNewZeroMonom() {return new Monom(ZERO);}
 	private double _coefficient; 
 	private int _power;
+	
 	@Override
 	public function initFromString(String s) {
-		// TODO Auto-generated method stub
-		return null;
+		function m1 = new Monom(s);
+		return m1;
 	}
+	
 	@Override
 	public function copy() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
