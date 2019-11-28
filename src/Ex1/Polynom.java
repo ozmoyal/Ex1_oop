@@ -244,12 +244,9 @@ public class Polynom implements Polynom_able{
 
 	@Override
 	public Polynom_able copy() {
-		Polynom_able cp = new Polynom();
-		Iterator<Monom> it = this.iteretor();
-		while(it.hasNext()) {
-			cp.add(it.next());
-		}
+		Polynom_able cp = new Polynom(this.toString());
 		return cp;
+
 	}
 
 	/**
