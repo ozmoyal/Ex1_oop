@@ -9,7 +9,13 @@ import Ex1.Polynom;
 
 class MonomTest {
 
-
+	@Test
+	void testMonom() {
+		Monom m1 = new Monom("+x");
+		Monom m2 = new Monom(1,1);
+		assertEquals(m1,m2,"error");
+	}
+	
 	@Test
 	void testIsZero() {
 		Monom zero= new Monom ("0");
@@ -34,9 +40,7 @@ class MonomTest {
 		System.out.println(actual.toString());
 		assertEquals(expected, actual, "Test Multiply Polynom with Monom");
 	}
-
 	
-
 	@Test
 	void testEqualsMonom() {
 		Monom actual= new Monom("2x^2");
@@ -45,11 +49,4 @@ class MonomTest {
 		actual.multipy(m);
 		System.out.println("actual.equals(expected) ?"+actual.equals(expected) );
 	}
-		
-
-	
-	
-
-
-
 }

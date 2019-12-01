@@ -242,10 +242,9 @@ public class Polynom implements Polynom_able{
 		return root(x2,x1,eps);
 	}
 
-	@Override
+
 	public Polynom_able copy() {
-		Polynom_able cp = new Polynom(this.toString());
-		return cp;
+		return new Polynom(this.toString());
 
 	}
 

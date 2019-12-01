@@ -59,10 +59,7 @@ class PolynomTest {
 	void testEqualsObject() {
 		Polynom p1 = new Polynom("2x^2");
 		Object p2 = new Polynom("2x^2");
-		Object p3= new Object();
-		//assertEpuals(p1,p2,"error");
-		//System.out.println("p1.equals(p2)="+p1.equals(p2));
-		//System.out.println("p1.equals(p3)="+p1.equals(p3));
+		assertEquals(p1,p2,"error");
 	}
 
 	@Test
@@ -74,7 +71,8 @@ class PolynomTest {
 	@Test
 	void testCopy() {
 		Polynom p1 = new Polynom("3x^3+2x^2+x");
-		Polynom p2 = (Polynom)p1.copy();
+		System.out.println(p1.toString());
+		Polynom p2 =(Polynom) p1.copy();
 		assertEquals(p1,p2,"error");
 	}
 

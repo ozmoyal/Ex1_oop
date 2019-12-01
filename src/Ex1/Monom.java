@@ -74,7 +74,7 @@ public class Monom implements function{
 		}
 		else if (s.contains("x"))
 		{
-			if(s.equals("x")) 
+			if(s.equals("x") || s.equals("+x")) 
 			{
 				this.set_coefficient(1);
 				this.set_power(1);
