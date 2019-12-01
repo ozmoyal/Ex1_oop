@@ -11,6 +11,8 @@ class PolynomTest {
 	@Test
 	void testPolynomString() {
 		Polynom p1= new Polynom ("-2x^2-2x+3");
+		Polynom p2 = new Polynom(p1.toString());
+		assertEquals(p1,p2,"error");
 	}
 
 
@@ -104,8 +106,13 @@ class PolynomTest {
 	@Test
 	void testToString() {
 		Polynom p1 = new Polynom("5x^3+4x^2-5");
-		String p2 = "5.0x^3+4.0x^2-5.0";
-		assertEquals(p1.toString(),p2);
+		String []p2 = {"5.0x^3","4.0x^2","-5.0"};
+		Polynom p3 = new Polynom();
+		for (int i = 0; i < p2.length; i++) {
+			Monom m = new Monom(p2[i]);
+			p3.add(m);
+		}
+		assertEquals(p1,p3,"error");
 	}
 }
 
