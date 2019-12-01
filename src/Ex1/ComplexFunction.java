@@ -1,23 +1,45 @@
 package Ex1;
 
 public class ComplexFunction implements complex_function {
+	function right;
+	function left;
+	Operation op;
+	public ComplexFunction()
+	{
+		this.right=null;
+		this.left=null;
+		this.op=Operation.Error;
+	}
+	public ComplexFunction(function l,function r,Operation o)
+	{
+		this.left=l;
+		this.right=r;
+		this.op=o;
+	}
+	public ComplexFunction(function l)
+	{
+		this.left=l;
+		this.right=null;
+		this.op=Operation.None;
+	}
 
 	@Override
 	public double f(double x) {
-		// TODO Auto-generated method stub
-		return 0;
+		
 	}
 
 	@Override
 	public function initFromString(String s) {
-		// TODO Auto-generated method stub
+		s=s.toLowerCase();
+		
+		
 		return null;
+		
 	}
 
 	@Override
 	public function copy() {
-		// TODO Auto-generated method stub
-		return null;
+		return new ComplexFunction(this.left,this.right,this.op);
 	}
 
 	@Override
@@ -58,20 +80,18 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public function left() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.left;
 	}
 
 	@Override
 	public function right() {
-		// TODO Auto-generated method stub
-		return null;
+	
+		return this.right;
 	}
 
 	@Override
 	public Operation getOp() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.op;
 	}
 
 }

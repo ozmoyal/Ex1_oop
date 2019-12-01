@@ -1,13 +1,39 @@
 package Ex1Testing;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 
-class complex_functionTest {
+class ComplexFunctionTest {
+
+	@Test
+	void testComplexFunction() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testComplexFunctionFunctionFunctionOperation() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testF() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testInitFromString() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	void testCopy() {
+		fail("Not yet implemented");
+	}
 
 	@Test
 	void testPlus() {
-
+		fail("Not yet implemented");
 	}
 
 	@Test
@@ -47,31 +73,6 @@ class complex_functionTest {
 
 	@Test
 	void testGetOp() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testF() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testToString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testInitFromString() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testCopy() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testEquals() {
 		fail("Not yet implemented");
 	}
 

@@ -158,13 +158,12 @@ public class Monom implements function{
 	
 	@Override
 	public function initFromString(String s) {
-		function m1 = new Monom(s);
-		return m1;
+		return new Monom(s);
 	}
 	
 	@Override
 	public function copy() {
-		return null;
+		return new Monom(this.toString());
 	}
 
 
