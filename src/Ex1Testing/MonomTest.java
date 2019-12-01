@@ -11,9 +11,10 @@ class MonomTest {
 
 	@Test
 	void testMonom() {
-		Monom m1 = new Monom("+x");
-		Monom m2 = new Monom(1,1);
+		Monom m1 = new Monom("-x");
+		Monom m2 = new Monom(-1,1);
 		assertEquals(m1,m2,"error");
+		
 	}
 	
 	@Test
