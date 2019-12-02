@@ -25,7 +25,7 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public double f(double x) {
-		
+		return 0;
 	}
 
 	@Override
