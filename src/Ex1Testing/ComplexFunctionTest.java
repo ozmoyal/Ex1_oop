@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import Ex1.ComplexFunction;
+import Ex1.function;
+
 class ComplexFunctionTest {
 
 	@Test
@@ -23,6 +26,9 @@ class ComplexFunctionTest {
 
 	@Test
 	void testInitFromString() {
+		function cf1 = new ComplexFunction();
+		cf1 = cf1.initFromString("Plus(2x,2x)");
+		System.out.println(cf1.toString());
 		fail("Not yet implemented");
 	}
 
