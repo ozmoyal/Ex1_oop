@@ -72,7 +72,32 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public double f(double x) {
-		return 0;
+		switch(this.op.toString())
+		{
+		case "plus":
+			return left.f(x) + right.f(x);
+		case "div":
+			this.op=Operation.Divid;
+			break;
+		case "mul":
+			this.op=Operation.Times;
+			break;
+		case "none":
+			this.op=Operation.None;
+			break;
+		case "comp":
+			this.op=Operation.Comp;
+			break;
+		case "max":
+			this.op=Operation.Max;
+			break;
+		case "min":
+			this.op=Operation.Min;
+			break;
+		default: 
+			this.op=Operation.Error;
+			break;
+		}
 	}
 
 	@Override
