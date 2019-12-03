@@ -27,9 +27,8 @@ class ComplexFunctionTest {
 	@Test
 	void testInitFromString() {
 		function cf1 = new ComplexFunction();
-		cf1 = cf1.initFromString("Plus(2x,2x)");
-		System.out.println(cf1.toString());
-		fail("Not yet implemented");
+		cf1 = cf1.initFromString("plus(2x,2x)");
+		System.out.println(cf1);
 	}
 
 	@Test
