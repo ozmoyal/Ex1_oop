@@ -47,6 +47,7 @@ public class ComplexFunction implements complex_function {
 			this.op=Operation.Error;
 		}
 	}
+	
 
 	public ComplexFunction(function left,function right,Operation op)
 	{
@@ -54,13 +55,22 @@ public class ComplexFunction implements complex_function {
 		this.right = right;
 		this.op = op;
 	}
-
-	//	public ComplexFunction(function l,String o)
-	//	{
-	//		this.left=l;
-	//		this.right=null;
-	//		this.op=Operation.None;
-	//	}
+	public ComplexFunction(String s)
+	{
+		if(!s.contains("(")&& !s.contains(")"))
+		{
+			new ComplexFunction (new Polynom (s));
+			return;
+		}
+		int index=s.indexOf("(");
+		String op=s.substring(0,index);
+		System.out.println(op);
+		System.out.println(s.substring(s.indexOf(",")+1,s.length()-1));
+		function left =new Polynom(s.substring(index+1,s.indexOf(',')));                    
+		function right =new Polynom(s.substring(s.indexOf(",")+1,s.length()-1));
+		new ComplexFunction(left,right,op);
+		
+	}
 
 	@Override
 	public double f(double x) {
@@ -69,29 +79,34 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public function initFromString(String s) {
-		if(s.length()==0)
-			return null;
-		if(s.contains("("))
+		if((findChar(s,'(')==1)&&(findChar(s,')')==1))
 		{
-			ComplexFunction p=new ComplexFunction();
-			String op="";
-			int index =s.indexOf("(");
-			op=s.substring(0,index-1);
-			s=s.substring(index+1,s.length());
-
-			if(s.endsWith(")"))
-			{
-				if(s.contains(","))
-				{
-					index =s.indexOf(",");
-					p.left=p.initFromString(s);
-					function right=new Polynom(s.substring(0,index-1));
-					return new ComplexFunction(p.left,right,op);	 
-				}
-			}
+			return new ComplexFunction (s);
+			
 		}
-		 return new Polynom(s);
+		if(s.indexOf("(") == -1 || s.indexOf(")") == -1)
+			return new Polynom(s);
+		int index = s.indexOf("(");
+		if(!s.contains(")"))
+				throw new RuntimeException("ERR the input ");
+		int i=s.length()-1;
+		while(s.charAt(i)!=','&&(i>0))
+		{
+			i--;
+		}
+		this.left.initFromString(s.substring(index,s.indexOf(",")-1)); 
+		this.right.initFromString(s.substring(s.indexOf(",")+1,s.length()));
+		return null;
 		
+		
+	}
+	public int findChar(String s,char c)
+	{
+		int count =0;
+		for (int i=0;i<s.length();i++)
+			if(s.charAt(i)==c)
+				count++;
+		return count;
 	}
 
 
