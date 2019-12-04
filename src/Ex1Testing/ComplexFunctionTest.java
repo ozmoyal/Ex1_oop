@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import Ex1.ComplexFunction;
+import Ex1.Polynom;
 import Ex1.function;
 
 class ComplexFunctionTest {
@@ -21,24 +22,36 @@ class ComplexFunctionTest {
 
 	@Test
 	void testF() {
-		fail("Not yet implemented");
+		function cf1 = new ComplexFunction();
+		cf1=cf1.initFromString("Plus(2x,2x)");
+
+		System.out.println("actual ="+cf1.f(2)+"expected= 8");
 	}
+
+
 
 	@Test
 	
 	void testInitFromString() {
 
-		function cf1 = new ComplexFunction();
-		
-		cf1 = cf1.initFromString("plus(2x,2x)");
-		System.out.println(cf1);
-		System.out.println(cf1.f(1));
+		function expected = new ComplexFunction();
+		function p1=new Polynom("x^2");
+		function f1=p1.copy();
+		System.out.println(p1);
+		System.out.println(f1);
+		function actual=new ComplexFunction(f1);
+		System.out.println(actual);
+
+		expected= expected.initFromString("x^2");
+		System.out.println(expected+"="+actual);
+		System.out.println(expected.f(-2));
+		assertEquals(expected, actual);
 
 	}
 
 	@Test
 	void testCopy() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test

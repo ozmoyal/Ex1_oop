@@ -1,5 +1,6 @@
 package Ex1;
 
+import java.util.Iterator;
 
 public class ComplexFunction implements complex_function {
 	/**
@@ -17,15 +18,30 @@ public class ComplexFunction implements complex_function {
 
 	public ComplexFunction(function left)
 	{
-		this.left = left;
-		this.right = null;
+		if(left != null)
+			this.left = left.copy();
+		else
+			this.left=null;
+		
+		if(right != null)
+			this.right = right.copy();
+		else
+			this.left=null;
+		
 		this.op = Operation.None;
 	}
 
 	public ComplexFunction(function left,function right,String op)
 	{
-		this.left = left;
-		this.right = right;
+		if(left != null)
+			this.left = left.copy();
+		else
+			this.left=null;
+		
+		if(right != null)
+			this.right = right.copy();
+		else
+			this.left=null;
 		op = op.toLowerCase();
 		switch(op)
 		{
@@ -55,35 +71,52 @@ public class ComplexFunction implements complex_function {
 			break;
 		}
 	}
-	
+
 
 	public ComplexFunction(function left,function right,Operation op)
 	{
-		this.left = left;
-		this.right = right;
+		if(left != null)
+			this.left = left.copy();
+		else
+			this.left=null;
+		
+		if(right != null)
+			this.right = right.copy();
+		else
+			this.left=null;
 		this.op = op;
 	}
-	public ComplexFunction(String s)
-	{
-		if(!s.contains("(")&& !s.contains(")"))
-		{
-			new ComplexFunction (new Polynom (s));
-			return;
-		}
-		int index=s.indexOf("(");
-		String op=s.substring(0,index);
-		System.out.println(op);
-		System.out.println(s.substring(s.indexOf(",")+1,s.length()-1));
-		function left =new Polynom(s.substring(index+1,s.indexOf(',')));                    
-		function right =new Polynom(s.substring(s.indexOf(",")+1,s.length()-1));
-		new ComplexFunction(left,right,op);
-		
-	}
+
 
 	@Override
 	public double f(double x) {
-		
-		return left.f(x)+right.f(x);
+	
+				switch(this.op.toString())
+				{
+				case "plus":
+					return left.f(x) + right.f(x);
+				case "div":
+					this.op=Operation.Divid;
+					break;
+				case "mul":
+					this.op=Operation.Times;
+					break;
+				case "none":
+					this.op=Operation.None;
+					break;
+				case "comp":
+					this.op=Operation.Comp;
+					break;
+				case "max":
+					this.op=Operation.Max;
+					break;
+				case "min":
+					this.op=Operation.Min;
+					break;
+				default: 
+					this.op=Operation.Error;
+					break;
+				}
 	}
 
 	@Override
@@ -233,4 +266,21 @@ public class ComplexFunction implements complex_function {
 	public String toString() {
 		return getOp().toString()+"("+left.toString()+" , "+right.toString()+")";
 	}
+	public boolean equals(Object cf1) {
+		if(!(cf1 instanceof function)) {
+			return false;
+		}
+		return visualEquals((function)cf1,-100,100);
+	}
+
+	private boolean visualEquals(function cf1,  double i, double j) {
+		while(i<j)
+		{
+			if(this.f(i)!=cf1.f(i))
+				return false;
+			i+=Monom.EPSILON;
+		}
+		return true;
+	}
+
 }

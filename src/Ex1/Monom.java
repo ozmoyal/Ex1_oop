@@ -50,6 +50,7 @@ public class Monom implements function{
 	//Example of possible strings "2x^2" /"4x"/"x"/"2"
 	public Monom(String s) {
 		s.toLowerCase();
+		s=s.replaceAll(" ", "");
 		if(s.contains("^"))
 		{
 			if(s.contains("x^"))
