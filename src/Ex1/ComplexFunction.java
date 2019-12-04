@@ -16,15 +16,16 @@ public class ComplexFunction implements complex_function {
 
 	public ComplexFunction(function left)
 	{
-		if(left != null)
-			this.left = left.copy();
-		else
-			this.left=null;
-
-		if(right != null)
-			this.right = right.copy();
-		else
-			this.left=null;
+		this.left = left;
+//		if(left != null)
+//			this.left = left.initFromString(left.toString());
+//		else
+//			this.left=null;
+//
+//		if(right != null)
+//			this.right = right.initFromString(right.toString());
+//		else
+//			this.left=null;
 
 		this.op = Operation.None;
 	}
@@ -33,12 +34,12 @@ public class ComplexFunction implements complex_function {
 	{
 
 		if(left != null)
-			this.left = left.copy();
+			this.left = left.initFromString(left.toString());
 		else
 			this.left=null;
 
 		if(right != null)
-			this.right = right.copy();
+			this.right = right.initFromString(right.toString());
 		else
 			this.left=null;
 
