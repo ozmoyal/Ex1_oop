@@ -16,18 +16,14 @@ public class ComplexFunction implements complex_function {
 
 	public ComplexFunction(function left)
 	{
-		this.left = left;
-//		if(left != null)
-//			this.left = left.initFromString(left.toString());
-//		else
-//			this.left=null;
-//
-//		if(right != null)
-//			this.right = right.initFromString(right.toString());
-//		else
-//			this.left=null;
+		if(left != null)
+			this.left = left.copy();
+		else
+			this.left=null;
 
-		this.op = Operation.None;
+		this.right=null;
+		this.op=Operation.None;
+
 	}
 
 	public ComplexFunction(function left,function right,String op)
@@ -44,16 +40,6 @@ public class ComplexFunction implements complex_function {
 			this.left=null;
 
 		op = op.toLowerCase();
-
-		if(left!= null)
-		{
-			this.left = left.initFromString(left.toString());
-		} else this.left = null;
-
-		if(right != null)
-		{
-			this.right = right.initFromString(right.toString());
-		}else this.right = null;
 
 		switch(op)
 		{
@@ -101,202 +87,211 @@ public class ComplexFunction implements complex_function {
 
 
 
-		@Override
-		public double f(double x) {
-			switch(this.op.toString())
+	@Override
+	public double f(double x) {
+		switch(this.op.toString())
+		{
+		case "plus":
+			return left.f(x) + right.f(x);
+		case "div":
+			try 
 			{
-			case "plus":
-				return left.f(x) + right.f(x);
-			case "div":
-				try 
-				{
-					return left.f(x) / right.f(x);
-				}
-				catch(ArithmeticException ex) 
-				{ 
-					System.out.println(ex.getMessage()); 
-				} 
-			case "mul":
-				return left.f(x) * right.f(x);
-			case "comp":
-				if(right != null) return left.f(right.f(x));
-				return left.f(x);
-			case "max":
-				if(right.f(x)>left.f(x))
-				{
-					return right.f(x);
-				}
-				return left.f(x);
-			case "min":
-				if(right.f(x)<left.f(x))
-				{
-					return right.f(x);
-				}
-				return left.f(x);
-			default: throw new IllegalArgumentException("Invalid operation");
+				return left.f(x) / right.f(x);
 			}
-		}
-
-		@Override
-		public function initFromString(String s) {
-
-			if(s.indexOf("(") == -1 && s.indexOf(")") == -1)
-				return new Polynom(s);
-			int firstParen = s.indexOf("(");
-			int indexSep = comIndex(s,firstParen);
-			String oper = s.substring(0, firstParen);
-			function left = initFromString(s.substring(firstParen+1, indexSep));
-			function right = initFromString(s.substring(indexSep+1,s.length()-1));
-			ComplexFunction ans = new ComplexFunction(left,right,oper);
-			return ans;
-		}
-
-		private int comIndex(String s, int firstParen) {
-			int paren = 1;
-			int com = 0;
-			int index = firstParen+1;
-			while(index<s.length() && paren != com) {
-				if(s.charAt(index) == '(') 
-				{
-					paren++;
-				}
-				if(s.charAt(index) == ',')
-				{
-					com++;
-				}
-				index++;
-			}
-			return index-1;
-
-		}
-
-		@Override
-		public function copy() {
-			return new ComplexFunction(this.left,this.right,this.op.toString());
-		}
-
-		@Override
-		public void plus(function f1) {
-			if(this.right != null) {
-				function cf1 = new ComplexFunction(this.right,this.left,this.op);
-				this.left = cf1;
-				this.right = f1;
-				this.op = Operation.Plus;
-			}
-			else {
-				this.right = f1;
-				this.op = Operation.Plus;;
-			}
-		}
-
-		@Override
-		public void mul(function f1) {
-			if(this.right != null) {
-				function cf1 = new ComplexFunction(this.right,this.left,this.op);
-				this.left = cf1;
-				this.right = f1;
-				this.op = Operation.Times;
-			}
-			else {
-				this.right = f1;
-				this.op = Operation.Times;
-			}
-
-		}
-
-		@Override
-		public void div(function f1) {
-			if(this.right != null) {
-				function cf1 = new ComplexFunction(this.right,this.left,this.op);
-				this.left = cf1;
-				this.right = f1;
-				this.op = Operation.Divid;
-			}
-			else {
-				this.right = f1;
-				this.op = Operation.Divid;
-			}
-
-		}
-
-		@Override
-		public void max(function f1) {
-			if(this.right != null) {
-				function cf1 = new ComplexFunction(this.right,this.left,this.op);
-				this.left = cf1;
-				this.right = f1;
-				this.op = Operation.Max;
-			}
-			else {
-				this.right = f1;
-				this.op = Operation.Max;
-			}
-
-		}
-
-		@Override
-		public void min(function f1) {
-			if(this.right != null) {
-				function cf1 = new ComplexFunction(this.right,this.left,this.op);
-				this.left = cf1;
-				this.right = f1;
-				this.op = Operation.Min;
-			}
-			else {
-				this.right = f1;
-				this.op = Operation.Min;
-			}
-
-		}
-
-		@Override
-		public void comp(function f1) {
-			if(this.right != null) {
-				function cf1 = new ComplexFunction(this.right,this.left,this.op);
-				this.left = cf1;
-				this.right = f1;
-				this.op = Operation.Comp;
-			}
-			else {
-				this.right = f1;
-				this.op = Operation.Comp;
-			}
-
-		}
-
-		@Override
-		public function left() {
-			return this.left;
-		}
-
-		@Override
-		public function right() {
-			return this.right;
-		}
-
-		@Override
-		public Operation getOp() {
-			return this.op;
-		}
-
-		public String toString() {
-			return getOp().toString()+"("+left.toString()+" , "+right.toString()+")";
-		}
-		public boolean equals(Object cf1) {
-			if(!(cf1 instanceof function)) {
-				return false;
-			}
-			return visualEquals((function)cf1,-100,100);
-		}
-
-		private boolean visualEquals(function cf1,  double i, double j) {
-			while(i<j)
+			catch(ArithmeticException ex) 
+			{ 
+				System.out.println(ex.getMessage()); 
+			} 
+		case "mul":
+			return left.f(x) * right.f(x);
+		case "comp":
+			if(right != null) return left.f(right.f(x));
+			return left.f(x);
+		case "max":
+			if(right.f(x)>left.f(x))
 			{
-				if(this.f(i)!=cf1.f(i))
-					return false;
-				i+=Monom.EPSILON;
+				return right.f(x);
 			}
-			return true;
+			return left.f(x);
+		case "min":
+			if(right.f(x)<left.f(x))
+			{
+				return right.f(x);
+			}
+			return left.f(x);
+		default: throw new IllegalArgumentException("Invalid operation");
+		}
+	}
+
+	@Override
+	public function initFromString(String s) {
+
+		if(s.indexOf("(") == -1 && s.indexOf(")") == -1)
+			return new Polynom(s);
+		int firstParen = s.indexOf("(");
+		int indexSep = comIndex(s,firstParen);
+		String oper = s.substring(0, firstParen);
+		function left = initFromString(s.substring(firstParen+1, indexSep));
+		function right = initFromString(s.substring(indexSep+1,s.length()-1));
+		ComplexFunction ans = new ComplexFunction(left,right,oper);
+		return ans;
+	}
+
+	private int comIndex(String s, int firstParen) {
+		int paren = 1;
+		int com = 0;
+		int index = firstParen+1;
+		while(index<s.length() && paren != com) {
+			if(s.charAt(index) == '(') 
+			{
+				paren++;
+			}
+			if(s.charAt(index) == ',')
+			{
+				com++;
+			}
+			index++;
+		}
+		return index-1;
+
+	}
+
+	@Override
+	public function copy() {
+		return new ComplexFunction(this.left,this.right,this.op.toString());
+	}
+
+	@Override
+	public void plus(function f1) {
+		if(this.right != null) {
+			function cf1 = new ComplexFunction(this.right,this.left,this.op);
+			this.left = cf1;
+			this.right = f1;
+			this.op = Operation.Plus;
+		}
+		else {
+			this.right = f1;
+			this.op = Operation.Plus;;
+		}
+	}
+
+	@Override
+	public void mul(function f1) {
+		if(this.right != null) {
+			function cf1 = new ComplexFunction(this.right,this.left,this.op);
+			this.left = cf1;
+			this.right = f1;
+			this.op = Operation.Times;
+		}
+		else {
+			this.right = f1;
+			this.op = Operation.Times;
 		}
 
 	}
+
+	@Override
+	public void div(function f1) {
+		if(this.right != null) {
+			function cf1 = new ComplexFunction(this.right,this.left,this.op);
+			this.left = cf1;
+			this.right = f1;
+			this.op = Operation.Divid;
+		}
+		else {
+			this.right = f1;
+			this.op = Operation.Divid;
+		}
+
+	}
+
+	@Override
+	public void max(function f1) {
+		if(this.right != null) {
+			function cf1 = new ComplexFunction(this.right,this.left,this.op);
+			this.left = cf1;
+			this.right = f1;
+			this.op = Operation.Max;
+		}
+		else {
+			this.right = f1;
+			this.op = Operation.Max;
+		}
+
+	}
+
+	@Override
+	public void min(function f1) {
+		if(this.right != null) {
+			function cf1 = new ComplexFunction(this.right,this.left,this.op);
+			this.left = cf1;
+			this.right = f1;
+			this.op = Operation.Min;
+		}
+		else {
+			this.right = f1;
+			this.op = Operation.Min;
+		}
+
+	}
+
+	@Override
+	public void comp(function f1) {
+		if(this.right != null) {
+			function cf1 = new ComplexFunction(this.right,this.left,this.op);
+			this.left = cf1;
+			this.right = f1;
+			this.op = Operation.Comp;
+		}
+		else {
+			this.right = f1;
+			this.op = Operation.Comp;
+		}
+
+	}
+
+	@Override
+	public function left() {
+		return this.left;
+	}
+
+	@Override
+	public function right() {
+		return this.right;
+	}
+
+	@Override
+	public Operation getOp() {
+		return this.op;
+	}
+
+	public String toString() {
+		if(this.op.equals(Operation.None))
+			if(left!=null)
+				return left.toString();
+		String ans= getOp().toString()+"("+left.toString()+" , "+right.toString()+")";
+		if(left!=null)
+			ans+= left.toString();
+		if(right!=null)
+			ans+= right.toString();
+		return ans+")";
+		
+	}
+	public boolean equals(Object cf1) {
+		if(!(cf1 instanceof function)) {
+			return false;
+		}
+		return visualEquals((function)cf1,-100,100);
+	}
+
+	private boolean visualEquals(function cf1,  double i, double j) {
+		while(i<j)
+		{
+			if(this.f(i)!=cf1.f(i))
+				return false;
+			i+=Monom.EPSILON;
+		}
+		return true;
+	}
+
+}
