@@ -2,9 +2,7 @@ package Ex1;
 
 
 public class ComplexFunction implements complex_function {
-	/**
-	 * 
-	 */
+
 	function right;
 	function left;
 	Operation op;
@@ -12,7 +10,7 @@ public class ComplexFunction implements complex_function {
 	public ComplexFunction()
 	{
 		this.right = this.left = null;
-		this.op = Operation.None;
+		this.op = Operation.Error;
 	}
 
 	public ComplexFunction(function left)
@@ -24,9 +22,18 @@ public class ComplexFunction implements complex_function {
 
 	public ComplexFunction(function left,function right,String op)
 	{
-		this.left = left;
-		this.right = right;
 		op = op.toLowerCase();
+		
+		if(left!= null)
+		{
+			this.left = left.initFromString(left.toString());
+		} else this.left = null;
+		
+		if(right != null)
+		{
+			this.right = right.initFromString(right.toString());
+		}else this.right = null;
+		
 		switch(op)
 		{
 		case "plus":
@@ -58,17 +65,18 @@ public class ComplexFunction implements complex_function {
 
 	public ComplexFunction(function left,function right,Operation op)
 	{
-		this.left = left;
-		this.right = right;
+		if(left!= null)
+		{
+			this.left = left.initFromString(left.toString());
+		} else this.left = null;
+		
+		if(right != null)
+		{
+			this.right = right.initFromString(right.toString());
+		}else this.right = null;
+		
 		this.op = op;
 	}
-
-	//	public ComplexFunction(function l,String o)
-	//	{
-	//		this.left=l;
-	//		this.right=null;
-	//		this.op=Operation.None;
-	//	}
 
 	@Override
 	public double f(double x) {
@@ -77,26 +85,32 @@ public class ComplexFunction implements complex_function {
 		case "plus":
 			return left.f(x) + right.f(x);
 		case "div":
-			this.op=Operation.Divid;
-			break;
+			try 
+			{
+				return left.f(x) / right.f(x);
+			}
+	        catch(ArithmeticException ex) 
+	        { 
+	            System.out.println(ex.getMessage()); 
+	        } 
 		case "mul":
-			this.op=Operation.Times;
-			break;
-		case "none":
-			this.op=Operation.None;
-			break;
+			return left.f(x) * right.f(x);
 		case "comp":
-			this.op=Operation.Comp;
-			break;
+			if(right != null) return left.f(right.f(x));
+			return left.f(x);
 		case "max":
-			this.op=Operation.Max;
-			break;
+			if(right.f(x)>left.f(x))
+			{
+				return right.f(x);
+			}
+			return left.f(x);
 		case "min":
-			this.op=Operation.Min;
-			break;
-		default: 
-			this.op=Operation.Error;
-			break;
+			if(right.f(x)<left.f(x))
+			{
+				return right.f(x);
+			}
+			return left.f(x);
+		default: throw new IllegalArgumentException("Invalid operation");
 		}
 	}
 
@@ -105,28 +119,26 @@ public class ComplexFunction implements complex_function {
 		if(s.indexOf("(") == -1 && s.indexOf(")") == -1)
 			return new Polynom(s);
 		int firstParen = s.indexOf("(");
-		int indexSep = findSep(s,firstParen);
+		int indexSep = comIndex(s,firstParen);
 		String oper = s.substring(0, firstParen);
 		function left = initFromString(s.substring(firstParen+1, indexSep));
 		function right = initFromString(s.substring(indexSep+1,s.length()-1));
 		ComplexFunction ans = new ComplexFunction(left,right,oper);
 		return ans;
 	}
-
-
-	private int findSep(String s, int firstParen) {
-		// TODO Auto-generated method stub
+	
+	private int comIndex(String s, int firstParen) {
 		int paren = 1;
-		int sep = 0;
+		int com = 0;
 		int index = firstParen+1;
-		while(index<s.length() && paren != sep) {
+		while(index<s.length() && paren != com) {
 			if(s.charAt(index) == '(') 
 			{
 				paren++;
 			}
 			if(s.charAt(index) == ',')
 			{
-				sep++;
+				com++;
 			}
 			index++;
 		}
