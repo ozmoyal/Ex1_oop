@@ -39,8 +39,8 @@ class ComplexFunctionTest {
 		function f1=p1.copy();
 		System.out.println(p1);
 		System.out.println(f1);
-		function actual=new ComplexFunction(f1);
-		System.out.println(actual);
+		ComplexFunction actual=new ComplexFunction(f1);
+		System.out.println(actual.toString());
 
 		expected= expected.initFromString("x^2");
 		System.out.println(expected+"="+actual);

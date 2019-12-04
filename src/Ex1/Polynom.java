@@ -186,7 +186,6 @@ public class Polynom implements Polynom_able{
 	 * @return true or false
 	 */
 	@Override
-
 	public boolean equals(Object p1) {
 		if(!(p1 instanceof Polynom_able)) {
 			return false;
