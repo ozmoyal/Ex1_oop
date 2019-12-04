@@ -36,14 +36,14 @@ class ComplexFunctionTest {
 
 		function expected = new ComplexFunction();
 		function p1=new Polynom("x^2");
-		function f1=p1.copy();
 		System.out.println(p1);
-		System.out.println(f1);
-		ComplexFunction actual=new ComplexFunction(f1);
-		System.out.println(actual.toString());
+		ComplexFunction l=new ComplexFunction(p1);
+		System.out.println("l="+l.toString());
 
-		expected= expected.initFromString("x^2");
-		System.out.println(expected+"="+actual);
+		ComplexFunction actual=new ComplexFunction(p1,p1,"plus");
+		System.out.println(actual.toString());
+		expected= expected.initFromString("Plus(1.0x^2,1.0x^2)");
+		System.out.println(expected);
 		System.out.println(expected.f(-2));
 		assertEquals(expected, actual);
 
