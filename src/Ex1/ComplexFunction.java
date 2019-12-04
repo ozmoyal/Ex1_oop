@@ -11,8 +11,8 @@ public class ComplexFunction implements complex_function {
 
 	public ComplexFunction()
 	{
-		right = left = null;
-		op = Operation.None;
+		this.right = this.left = null;
+		this.op = Operation.None;
 	}
 
 	public ComplexFunction(function left)
@@ -29,22 +29,30 @@ public class ComplexFunction implements complex_function {
 		op = op.toLowerCase();
 		switch(op)
 		{
-		case ("plus"):
+		case "plus":
 			this.op=Operation.Plus;
-		case ("div"):
+			break;
+		case "div":
 			this.op=Operation.Divid;
-		case ("mul"):
+			break;
+		case "mul":
 			this.op=Operation.Times;
-		case ("none"):
+			break;
+		case "none":
 			this.op=Operation.None;
-		case ("comp"):
+			break;
+		case "comp":
 			this.op=Operation.Comp;
-		case ("max"):
+			break;
+		case "max":
 			this.op=Operation.Max;
-		case ("min"):
+			break;
+		case "min":
 			this.op=Operation.Min;
+			break;
 		default: 
 			this.op=Operation.Error;
+			break;
 		}
 	}
 	
@@ -74,41 +82,44 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public double f(double x) {
-		return 0;
+		
+		return left.f(x)+right.f(x);
 	}
 
 	@Override
 	public function initFromString(String s) {
-		if((findChar(s,'(')==1)&&(findChar(s,')')==1))
-		{
-			return new ComplexFunction (s);
-			
-		}
-		if(s.indexOf("(") == -1 || s.indexOf(")") == -1)
+
+		if(s.indexOf("(") == -1 && s.indexOf(")") == -1)
 			return new Polynom(s);
-		int index = s.indexOf("(");
-		if(!s.contains(")"))
-				throw new RuntimeException("ERR the input ");
-		int i=s.length()-1;
-		while(s.charAt(i)!=','&&(i>0))
-		{
-			i--;
-		}
-		this.left.initFromString(s.substring(index,s.indexOf(",")-1)); 
-		this.right.initFromString(s.substring(s.indexOf(",")+1,s.length()));
-		return null;
-		
-		
-	}
-	public int findChar(String s,char c)
-	{
-		int count =0;
-		for (int i=0;i<s.length();i++)
-			if(s.charAt(i)==c)
-				count++;
-		return count;
+		int firstParen = s.indexOf("(");
+		int indexSep = findSep(s,firstParen);
+		String oper = s.substring(0, firstParen);
+		function left = initFromString(s.substring(firstParen+1, indexSep));
+		function right = initFromString(s.substring(indexSep+1,s.length()-1));
+		ComplexFunction ans = new ComplexFunction(left,right,oper);
+		return ans;
 	}
 
+
+	private int findSep(String s, int firstParen) {
+		// TODO Auto-generated method stub
+		int paren = 1;
+		int sep = 0;
+		int index = firstParen+1;
+		while(index<s.length() && paren != sep) {
+			if(s.charAt(index) == '(') 
+			{
+				paren++;
+			}
+			if(s.charAt(index) == ',')
+			{
+				sep++;
+			}
+			index++;
+		}
+		return index-1;
+
+	}
 
 	@Override
 	public function copy() {
@@ -220,6 +231,6 @@ public class ComplexFunction implements complex_function {
 	}
 
 	public String toString() {
-		return this.op+"("+left.toString()+" , "+right.toString()+")";
+		return getOp().toString()+"("+left.toString()+" , "+right.toString()+")";
 	}
 }

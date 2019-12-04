@@ -50,4 +50,34 @@ class MonomTest {
 		actual.multipy(m);
 		System.out.println("actual.equals(expected) ?"+actual.equals(expected) );
 	}
+	@Test
+	void testf()
+	{
+		Monom m=new Monom(3,5);
+		double expected =m.f(-2);
+		double actual =Math.pow(-2, 5)*3;
+		System.out.println(m.toString()+ "="+expected +","+actual);
+		int [][] monom = {{3,5}, {1,2} ,{-6,1}, {0,2}, {8,0}, {-2,3}};
+		int [] x = {0,1,-2,2,10};
+		double [] [] res = {{0.0,3.0,-96.0,96.0,300000.0},{0.0,1.0,4.0,4.0,100.0},
+				{0.0,-6.0,12.0,-12.0,-60.0},{0.0,0.0,0.0,0.0,0.0},{8,8,8,8,8,8},{0.0,-2.0,16.0,-16.0,-2000.0}};		
+		                
+				
+		
+		for(int i=0; i<monom.length ;i++)
+		{
+			m= new Monom(monom[i][0],monom[i][1]);
+			System.out.println(m.toString());
+			for(int j=0; j<x.length; j++) 
+			{
+				double re=m.f(x[j]);
+				System.out.println(+x[j]+": expection : " + res[i][j] + " actual : " +re );
+				assertEquals( res[i][j], re);
+		
+			}
+			
+			
+		}
+		
+	}
 }

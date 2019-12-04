@@ -41,6 +41,7 @@ public class Monom implements function{
 		double ans=0;
 		double p = this.get_power();
 		ans = this.get_coefficient()*Math.pow(x, p);
+		if(ans==0) return 0;
 		return ans;
 	} 
 	public boolean isZero() {return this.get_coefficient() == 0;}
