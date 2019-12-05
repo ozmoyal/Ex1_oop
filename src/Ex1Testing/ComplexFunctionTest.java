@@ -27,25 +27,20 @@ class ComplexFunctionTest {
 		System.out.println("actual ="+cf1.f(2)+"expected= 8");
 	}
 
-
-
 	@Test
 	
 	void testInitFromString() {
-
 		function expected = new ComplexFunction();
-		function p1=new Polynom("x^2");
+		function p1 = new Polynom("x^2");
 		System.out.println(p1);
-		ComplexFunction l=new ComplexFunction(p1);
+		ComplexFunction l = new ComplexFunction(p1);
 		System.out.println("l="+l.toString());
-
-		ComplexFunction actual=new ComplexFunction(p1,p1,"plus");
+		ComplexFunction actual = new ComplexFunction(p1,p1,"plus");
 		System.out.println(actual.toString());
 		expected= expected.initFromString("Plus(1.0x^2,1.0x^2)");
 		System.out.println(expected);
 		System.out.println(expected.f(-2));
 		assertEquals(expected, actual);
-
 	}
 
 	@Test
