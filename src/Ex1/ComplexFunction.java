@@ -90,9 +90,13 @@ public class ComplexFunction implements complex_function {
 	public double f(double x) {
 		switch(this.op.toString())
 		{
-		case "plus":
-			return left.f(x) + right.f(x);
-		case "div":
+		case "Plus":
+			if(left!=null)
+				if(right!=null)
+					return left.f(x) + right.f(x);
+				return left.f(x);
+				
+		case "Divid":
 			try 
 			{
 				return left.f(x) / right.f(x);
@@ -101,24 +105,27 @@ public class ComplexFunction implements complex_function {
 			{ 
 				System.out.println(ex.getMessage()); 
 			} 
-		case "mul":
+		case "Times":
 			return left.f(x) * right.f(x);
-		case "comp":
+		case "Comp":
 			if(right != null) return left.f(right.f(x));
 			return left.f(x);
-		case "max":
+		case "Max":
 			if(right.f(x)>left.f(x))
 			{
 				return right.f(x);
 			}
 			return left.f(x);
-		case "min":
+		case "Min":
 			if(right.f(x)<left.f(x))
 			{
 				return right.f(x);
 			}
 			return left.f(x);
-		default: throw new IllegalArgumentException("Invalid operation");
+		default: 
+			if(left!=null)
+				return left.f(x);
+			throw new IllegalArgumentException("Invalid operation");
 		}
 	}
 
@@ -266,27 +273,26 @@ public class ComplexFunction implements complex_function {
 
 	public String toString() {
 		if(this.op.equals(Operation.None))
+		{
 			if(left!=null)
 				return left.toString();
-		String ans= getOp().toString()+"("+left.toString()+" , "+right.toString()+")";
+		}
+		String ans= getOp().toString()+"("+left.toString()+",";
 		if(left!=null)
 			ans+= left.toString();
-		if(right!=null)
-			ans+= right.toString();
 		return ans+")";
-		
+
 	}
 	public boolean equals(Object cf1) {
-		if(!(cf1 instanceof function)) {
-			return false;
-		}
-		return visualEquals((function)cf1,-100,100);
+		if(!(cf1 instanceof function))
+				return false;
+		return visualEquals((function)cf1,-1,1);
 	}
 
 	private boolean visualEquals(function cf1,  double i, double j) {
-		while(i<j)
+		while(i<=j)
 		{
-			if(this.f(i)!=cf1.f(i))
+			if(Math.abs(this.f(i)-cf1.f(i))>=Monom.EPSILON)
 				return false;
 			i+=Monom.EPSILON;
 		}
