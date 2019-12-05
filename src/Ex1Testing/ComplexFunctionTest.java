@@ -23,7 +23,7 @@ class ComplexFunctionTest {
 	@Test
 	void testF() {
 		function cf1 = new ComplexFunction();
-		cf1=cf1.initFromString("Plus(2x,2x)");
+		cf1 = cf1.initFromString("Plus(2x,2x)");
 		System.out.println("actual ="+cf1.f(2)+"expected= 8");
 	}
 
@@ -37,7 +37,7 @@ class ComplexFunctionTest {
 		System.out.println("l="+l.toString());
 		ComplexFunction actual = new ComplexFunction(p1,p1,"plus");
 		System.out.println(actual.toString());
-		expected= expected.initFromString("Plus(1.0x^2,1.0x^2)");
+		expected= expected.initFromString("min(min(min(min(plus(-1.0x^4 +2.4x^2 +3.1,+0.1x^5-1.2999999999999998x +5.0),plus(div(+1.0x +1.0,mul(mul(+1.0x +3.0,+1.0x -2.0),+1.0x -4.0)),2.0)),div(plus(1.0x^4 +2.4x^2 +3.1,+0.1x^5 -1.2999999999999998x +5.0),-1.0x^4 +2.4x^2 +3.1)),-1.0x^4 +2.4x^2+3.1),+0.1x^5 -1.2999999999999998x +5.0)");
 		System.out.println(expected);
 		System.out.println(expected.f(-2));
 		assertEquals(expected, actual);

@@ -269,11 +269,9 @@ public class ComplexFunction implements complex_function {
 		if(this.op.equals(Operation.None))
 			if(left!=null)
 				return left.toString();
-		String ans= getOp().toString()+"("+left.toString()+" , "+right.toString()+")";
+		String ans= getOp().toString()+"("+left.toString()+",";
 		if(left!=null)
 			ans+= left.toString();
-		if(right!=null)
-			ans+= right.toString();
 		return ans+")";
 		
 	}
