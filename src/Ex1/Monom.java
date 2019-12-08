@@ -76,29 +76,33 @@ public class Monom implements function{
 		}
 		else if (s.contains("x"))
 		{
-			if(s.equals("x") || s.equals("+x")) 
+			s=s.substring(0,s.indexOf('x'));
+			if(s.equals("")||s.equals("+"))
 			{
 				this.set_coefficient(1);
+				this.set_coefficient(1);
+				return;
+			}
+			if(s.equals("-"))
+			{
+				this.set_coefficient(-1);
 				this.set_power(1);
 				return;
 			}
-			String [] sNum= s.split("x");
-			if(sNum.length >1) {throw new RuntimeException("ERR the input ");}
-
-			if(sNum[0].length()==1)
-			{	if(sNum[0].equals("-")) sNum[0]="-1.0";	
-			}
-
-			double a=Double.parseDouble(sNum[0]);
-			this.set_coefficient(a);
-			this.set_power(1);
-		}
-		else
-		{
+			
+			try
+			{
 			double a=Double.parseDouble(s);
 			this.set_coefficient(a);
-			this.set_power(0);
+			this.set_power(1);
+			}
+			catch(ArithmeticException ex) 
+			{ 
+				System.out.println(ex.getMessage()); 
+			} 
 		}
+		
+
 	}
 //**adding monoms if the power is different throw Err
 	public void add(Monom m) {

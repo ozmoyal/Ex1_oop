@@ -84,9 +84,6 @@ public class ComplexFunction implements complex_function {
 	this.op = op;
 	}
 
-
-
-
 	@Override
 	public double f(double x) {
 		switch(this.op.toString())
@@ -124,8 +121,6 @@ public class ComplexFunction implements complex_function {
 			}
 			return left.f(x);
 		default: 
-			if(left!=null)
-				return left.f(x);
 			throw new IllegalArgumentException("Invalid operation");
 		}
 	}

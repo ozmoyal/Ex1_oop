@@ -12,8 +12,11 @@ class MonomTest {
 	@Test
 	void testMonom() {
 		Monom m1 = new Monom("-x");
+		System.out.println("m1"+m1);
+
 		Monom m2 = new Monom(-1,1);
 		assertEquals(m1,m2,"error");
+		
 		
 	}
 	

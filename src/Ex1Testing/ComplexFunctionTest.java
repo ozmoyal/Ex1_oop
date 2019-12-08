@@ -11,15 +11,6 @@ import Ex1.function;
 
 class ComplexFunctionTest {
 
-	@Test
-	void testComplexFunction() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testComplexFunctionFunctionFunctionOperation() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testF() {
@@ -46,20 +37,18 @@ class ComplexFunctionTest {
 	void testInitFromString() {
 		function expected = new ComplexFunction();
 		function p1 = new Polynom("x^2");
-		System.out.println(p1);
-		ComplexFunction l = new ComplexFunction(p1);
-		System.out.println("l="+l.toString());
 		ComplexFunction actual = new ComplexFunction(p1,p1,"plus");
-		System.out.println(actual.toString());
-		expected = expected.initFromString("plus(x^2,x^2)");
-		System.out.println(expected);
-		System.out.println(expected.f(-2));
-		assertEquals(expected, actual);
+		expected=expected.initFromString(actual.toString());
+		assertEquals(expected, actual,"error");
 	}
 
 	@Test
 	void testCopy() {
-		fail("Not yet implemented");
+		function expected = new ComplexFunction();
+		function p1 = new Polynom("x^2");
+		ComplexFunction actual = new ComplexFunction(p1,p1,"plus");
+		expected=actual.copy();
+		assertEquals(expected, actual,"error");
 	}
 
 	@Test
@@ -68,9 +57,8 @@ class ComplexFunctionTest {
 		ComplexFunction expected = new ComplexFunction(p1,p1,"plus");
 		ComplexFunction actual= new ComplexFunction(p1);
 		actual.plus(p1);
-		System.out.println("expected "+expected+"actual "+actual);
-		System.out.println("expected "+expected.f(1)+"actual "+actual.f(1));
-		assertEquals(expected, actual);
+		
+		assertEquals(expected.f(1), actual.f(1));
 
 
 	}
@@ -90,21 +78,15 @@ class ComplexFunctionTest {
 		ComplexFunction expected = new ComplexFunction(p1,p1,"div");
 		ComplexFunction actual= new ComplexFunction(p1);
 		actual.div(p1);
-
-		System.out.println(actual.f(0));
-		System.out.println("expected "+expected+"actual "+actual);
-		System.out.println("expected "+expected.f(1)+"actual "+actual.f(1));
-		assertEquals(expected.f(1), actual.f(1));;
-
+		assertEquals(expected, actual);
 	}
 
 	@Test
 	void testMax() {
 		function p1=new Polynom("x^2");
-		ComplexFunction cf1 = new ComplexFunction(p1,p1,"plus");
-		cf1.max(p1);
-		double actual=cf1.f(2);
-		double expected=8;
+		ComplexFunction expected = new ComplexFunction(p1,p1,"max");
+		ComplexFunction actual= new ComplexFunction(p1);
+		actual.max(p1);
 		assertEquals(expected, actual);
 
 	}
@@ -121,18 +103,30 @@ class ComplexFunctionTest {
 
 	@Test
 	void testComp() {
-		
-		fail("Not yet implemented");
+		function p1=new Polynom("x^2");
+		ComplexFunction cf1 = new ComplexFunction(p1,p1,"comp");
+		double actual=cf1.f(2);
+		double expected=16;
+		assertEquals(expected, actual);
 	}
 
 	@Test
 	void testLeft() {
-		fail("Not yet implemented");
+		function p1=new Polynom("x^2");
+		ComplexFunction expected = new ComplexFunction(p1,p1,"comp");
+		ComplexFunction actual= new ComplexFunction(p1);
+		actual.comp(p1);
+		assertEquals(expected, actual);
+		
 	}
 
 	@Test
 	void testRight() {
-		fail("Not yet implemented");
+		function expected=new Polynom("x^2");
+		ComplexFunction cf1 = new ComplexFunction(expected,expected,"comp");
+		function actual=cf1.right();
+		assertEquals(expected, actual);
+		
 	}
 
 	@Test
