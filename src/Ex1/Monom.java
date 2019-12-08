@@ -101,6 +101,15 @@ public class Monom implements function{
 				System.out.println(ex.getMessage()); 
 			} 
 		}
+		try
+		{
+		double a=Double.parseDouble(s);
+		this.set_coefficient(a);
+		}
+		catch(ArithmeticException ex) 
+		{ 
+			System.out.println(ex.getMessage()); 
+		}
 		
 
 	}
