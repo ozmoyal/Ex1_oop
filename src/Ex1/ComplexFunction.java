@@ -277,10 +277,7 @@ public class ComplexFunction implements complex_function {
 		{
 			if(left!=null)
 				return left.toString();
-<<<<<<< HEAD
-=======
-		}
->>>>>>> 86e0cd185176bd5d5659da0e2971300f99afbf07
+		} 
 		String ans= getOp().toString()+"("+left.toString()+",";
 		if(left!=null)
 			ans+= left.toString();

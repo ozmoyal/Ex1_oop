@@ -24,14 +24,21 @@ class ComplexFunctionTest {
 	@Test
 	void testF() {
 		function cf1 = new ComplexFunction();
-<<<<<<< HEAD
-		cf1 = cf1.initFromString("Plus(2x,2x)");
-=======
-		cf1=cf1.initFromString("Plus(2x,2x)");
+		cf1=cf1.initFromString("Plus(x,2x)");
 		System.out.println(cf1 +"=");
-
->>>>>>> 86e0cd185176bd5d5659da0e2971300f99afbf07
-		System.out.println("actual ="+cf1.f(2)+"expected= 8");
+		System.out.println("ctual ="+cf1.f(2)+"expected= 8");
+		function cf2 = new ComplexFunction();
+		cf2=cf2.initFromString("Mul(2x,2x)");
+		System.out.println(cf2 +"=");
+		System.out.println("actual ="+cf2.f(2)+"expected= 16");
+		function cf3 = new ComplexFunction();
+		cf3=cf3.initFromString("Div(x,2x)");
+		System.out.println(cf3 +"=");
+		System.out.println("actual ="+cf3.f(2)+"expected= 1");
+		function cf4 = new ComplexFunction();
+		cf4 = cf4.initFromString("max(3x,4x)");
+		System.out.println(cf4 +"=");
+		System.out.println("actual ="+cf4.f(2)+"expected= 6");
 	}
 
 	@Test
@@ -44,7 +51,7 @@ class ComplexFunctionTest {
 		System.out.println("l="+l.toString());
 		ComplexFunction actual = new ComplexFunction(p1,p1,"plus");
 		System.out.println(actual.toString());
-		expected= expected.initFromString("min(min(min(min(plus(-1.0x^4 +2.4x^2 +3.1,+0.1x^5-1.2999999999999998x +5.0),plus(div(+1.0x +1.0,mul(mul(+1.0x +3.0,+1.0x -2.0),+1.0x -4.0)),2.0)),div(plus(1.0x^4 +2.4x^2 +3.1,+0.1x^5 -1.2999999999999998x +5.0),-1.0x^4 +2.4x^2 +3.1)),-1.0x^4 +2.4x^2+3.1),+0.1x^5 -1.2999999999999998x +5.0)");
+		expected = expected.initFromString("plus(x^2,x^2)");
 		System.out.println(expected);
 		System.out.println(expected.f(-2));
 		assertEquals(expected, actual);
@@ -52,10 +59,6 @@ class ComplexFunctionTest {
 
 	@Test
 	void testCopy() {
-<<<<<<< HEAD
-=======
-
->>>>>>> 86e0cd185176bd5d5659da0e2971300f99afbf07
 		fail("Not yet implemented");
 	}
 
@@ -118,6 +121,7 @@ class ComplexFunctionTest {
 
 	@Test
 	void testComp() {
+		
 		fail("Not yet implemented");
 	}
 
@@ -133,8 +137,8 @@ class ComplexFunctionTest {
 
 	@Test
 	void testGetOp() {
+		function p1=new Polynom("x^2");
 		ComplexFunction cf1 = new ComplexFunction(p1,p1,"plus");
-		
 		assertEquals(Operation.Plus, cf1.getOp());
 	}
 
