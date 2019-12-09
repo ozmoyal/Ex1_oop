@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import stdDraw.StdDraw;
+import com.google.gson.Gson;
+
 
 public class Functions_GUI implements functions {
 	ArrayList<function> f_List = new ArrayList<function>();
@@ -186,7 +187,7 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(String json_file) {
-		// TODO Auto-generated method stub
+		Gson json = new Gson();
 	}
 
 	public ComplexFunction get(int i) {
