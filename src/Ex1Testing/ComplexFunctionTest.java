@@ -11,7 +11,6 @@ import Ex1.function;
 
 class ComplexFunctionTest {
 
-
 	@Test
 	void testF() {
 		function cf1 = new ComplexFunction();

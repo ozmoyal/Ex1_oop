@@ -234,7 +234,6 @@ public class ComplexFunction implements complex_function {
 			this.right = f1;
 			this.op = Operation.Min;
 		}
-
 	}
 
 	@Override
@@ -249,7 +248,6 @@ public class ComplexFunction implements complex_function {
 			this.right = f1;
 			this.op = Operation.Comp;
 		}
-
 	}
 
 	@Override
@@ -279,6 +277,7 @@ public class ComplexFunction implements complex_function {
 		return ans+")";
 
 	}
+	
 	public boolean equals(Object cf1) {
 		if(!(cf1 instanceof function))
 				return false;
