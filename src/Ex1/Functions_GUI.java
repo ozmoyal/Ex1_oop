@@ -11,9 +11,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-
+import java.util.Map;
+import java.io.FileWriter;
 import com.google.gson.Gson;
-
 
 public class Functions_GUI implements functions {
 	ArrayList<function> f_List = new ArrayList<function>();
@@ -113,10 +113,6 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void saveToFile(String file) throws IOException {
-<<<<<<< HEAD
-		
-=======
->>>>>>> 06cceacba9063d187187317306ee79df7f38aa33
 		try 
 		{
 			PrintWriter pw = new PrintWriter(new File(file));
@@ -191,9 +187,37 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(String json_file) {
-		Gson json = new Gson();
+		Gson gson = new Gson();
+	try {
+		FileReader reader =new FileReader("json_fil");
+		 Map<String, String> map = gson.fromJson(reader, Map.class);
+		 int width=Integer.parseInt(map.get("width"));
+		 System.out.println(width);
+		 int height=Integer.parseInt(map.get("width"));
+		 String str=map.get("Range_X");
+		int i=Integer.parseInt(str.substring(str.indexOf('['),str.indexOf(',')));
+		int j=Integer.parseInt(str.substring(str.indexOf(','),str.indexOf(']')));
+		 Range rx =new Range(i,j);
+		 System.out.println(rx);
+		  str=map.get("Range_Y");
+			 i=Integer.parseInt(str.substring(str.indexOf('['),str.indexOf(',')));
+			 j=Integer.parseInt(str.substring(str.indexOf(','),str.indexOf(']')));
+			 Range ry =new Range(i,j);
+			 int resolution=Integer.parseInt(map.get("resolution"));
+			 drawFunctions( width,  height,  rx,  ry,  resolution);
+			 return;
+		
+	}
+	catch (FileNotFoundException e) 
+	{
+		e.printStackTrace();
+	}
+	drawFunctions( 1000,  600,  new Range(-10,10), new Range(-15,5),  200);
+
 	}
 
-
-
 }
+	
+	   
+
+	
