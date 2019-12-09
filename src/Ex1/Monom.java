@@ -70,8 +70,7 @@ public class Monom implements function{
 				int b=Integer.parseInt(sNum[1]);
 				this.set_coefficient(a);
 				this.set_power(b);
-				return ;
-
+				return;
 			}
 			else throw new RuntimeException("ERR the input ");
 		}

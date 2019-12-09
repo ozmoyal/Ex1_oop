@@ -1,5 +1,7 @@
 package Ex1;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,6 +11,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+
+import com.google.gson.Gson;
+
 
 public class Functions_GUI implements functions {
 	ArrayList<function> f_List = new ArrayList<function>();
@@ -108,7 +113,10 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void saveToFile(String file) throws IOException {
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 06cceacba9063d187187317306ee79df7f38aa33
 		try 
 		{
 			PrintWriter pw = new PrintWriter(new File(file));
@@ -130,12 +138,60 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
-		// TODO Auto-generated method stub
+		// number of line segments to plot
+		StdDraw.setCanvasSize(width,height);
+		// rescale the coordinate system
+		double[] x = new double[resolution];
+		for (int i = 0; i < x.length; i++) {
+			x[i] = Math.abs( (rx.get_max()+rx.get_min()) *i/ resolution);
+		}
+		StdDraw.setXscale(rx.get_min(),rx.get_max());
+		StdDraw.setYscale(ry.get_min(),ry.get_max());
+		
+		//////// vertical lines
+		StdDraw.setPenColor(Color.LIGHT_GRAY);
+		for (int i = 0; i <= resolution; i=i+10) {
+			StdDraw.line(x[i], ry.get_min(), x[i], ry.get_max());
+		}
+		//////// horizontal  lines
+		for (double i = ry.get_min(); i <= ry.get_max(); i=i+0.5) {
+			StdDraw.line(rx.get_min(), i, rx.get_max(), i);
+		}
+		//////// x axis		
+		StdDraw.setPenColor(Color.BLACK);
+		StdDraw.setPenRadius(0.005);
+		int zero=(int)Math.abs( (rx.get_max()+rx.get_min()))/2;
+		StdDraw.line(rx.get_min(),zero , rx.get_max(),zero );
+		StdDraw.setFont(new Font("TimesRoman", Font.BOLD, 15));
+		for (int i = 0; i <= resolution; i=i+10) {
+			StdDraw.text(x[i]-0.07, -0.07, Integer.toString(i-resolution/2));
+		}
+		//////// y axis	
+		StdDraw.line(x[resolution/2], ry.get_min(), x[resolution/2], ry.get_max());
+		for (double i = ry.get_min(); i <= ry.get_max(); i=i+0.5) {
+			StdDraw.text(x[resolution/2]-0.07, i+0.07, Double.toString(i));
+		}
+
+		// plot the approximation to the function
+		for (int i=0;i<f_List.size();i++)
+		{
+			double [] y=new double[resolution];
+			for(int j=0;j<resolution;j++)
+			{
+				y[i]=f_List.get(i).f(x[j]);
+			}
+		for (int i1 = 0; i1 < resolution; i1++) {
+			StdDraw.line(x[i1], y[i1], x[i1+1], y[i1+1]);
+		}
+		StdDraw.setPenColor(Color.RED);
+		StdDraw.setPenRadius(0.01);
+		StdDraw.point(x[resolution/2], 1);
+	}
 	}
 
 	@Override
 	public void drawFunctions(String json_file) {
-		// TODO Auto-generated method stub
+		Gson json = new Gson();
 	}
 
 

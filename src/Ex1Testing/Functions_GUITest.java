@@ -32,17 +32,30 @@ import Ex1.functions;
 class Functions_GUITest {
 	public static void main(String[] a) {
 		functions data = FunctionsFactory();
+<<<<<<< HEAD
 	//	int w=1000, h=600, res=200;
 	//	Range rx = new Range(-10,10);
 	//	Range ry = new Range(-5,15);
 //		data.drawFunctions(w,h,rx,ry,res);
 		String file = "function_file.txt";
 		String file2 = "function_file2.txt";
+=======
+		int w=1000, h=600, res=200;
+		Range rx = new Range(-10,10);
+		Range ry = new Range(-5,15);
+		data.drawFunctions(w,h,rx,ry,res);
+		String file = "function_file.txt";
+		//String file2 = "function_file2.txt";
+>>>>>>> 06cceacba9063d187187317306ee79df7f38aa33
 		try {
 			data.saveToFile(file);
 			Functions_GUI data2 = new Functions_GUI();
 			data2.initFromFile(file);
+<<<<<<< HEAD
 			data.saveToFile(file2);
+=======
+			//data.saveToFile(file2);
+>>>>>>> 06cceacba9063d187187317306ee79df7f38aa33
 		}
 		catch(Exception e) {e.printStackTrace();}
 		
@@ -99,8 +112,13 @@ class Functions_GUITest {
 			cf3.mul(new Polynom(s3[i]));
 		}
 		
+<<<<<<< HEAD
 		ComplexFunction cf = new ComplexFunction( p1,p2,Operation.Plus);
 		ComplexFunction cf4 = new ComplexFunction( new Polynom("x +1"),cf3,"div");
+=======
+		ComplexFunction cf = new ComplexFunction(Operation.Plus, p1,p2);
+		ComplexFunction cf4 = new ComplexFunction("div", new Polynom("x +1"),cf3);
+>>>>>>> 06cceacba9063d187187317306ee79df7f38aa33
 		cf4.plus(new Monom("2"));
 		ans.add(cf.copy());
 		ans.add(cf4.copy());

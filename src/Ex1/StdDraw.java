@@ -1926,7 +1926,16 @@ public final class StdDraw implements ActionListener, MouseListener, MouseMotion
 
 
 		}
+<<<<<<< HEAD
 	}
+=======
+		StdDraw.setPenColor(Color.RED);
+		StdDraw.setPenRadius(0.01);
+		StdDraw.point(x[n/2], 1);
+	}
+	
+}
+>>>>>>> 06cceacba9063d187187317306ee79df7f38aa33
 
 
 	//Copyright © 2000–2017, Robert Sedgewick and Kevin Wayne. 
