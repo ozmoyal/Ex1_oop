@@ -187,13 +187,17 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void drawFunctions(String json_file) {
-		Gson json = new Gson();
+		Gson gson = new Gson();
+		try 
+		{
+			FileReader reader = new FileReader(json_file);
+			GUI_param parm = gson.fromJson(reader,GUI_param.class);
+			Range rangeX = new Range(parm.Range_X[0],parm.Range_X[0]);
+			Range rangeY = new Range(parm.Range_Y[0],parm.Range_Y[0]);
+			drawFunctions(parm.Width, parm.Height, rangeX, rangeY, parm.Resolution);
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
-
-	public ComplexFunction get(int i) {
-		if ( f_List.get(i)!=null)
-			return new ComplexFunction( f_List.get(i));
-		return null;
-	}
-
 }
