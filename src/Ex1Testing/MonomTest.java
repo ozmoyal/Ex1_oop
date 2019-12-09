@@ -11,10 +11,10 @@ class MonomTest {
 
 	@Test
 	void testMonom() {
-		Monom m1 = new Monom("-x");
+		Monom m1 = new Monom("-x^2");
 		System.out.println("m1"+m1);
 
-		Monom m2 = new Monom(-1,1);
+		Monom m2 = new Monom(-1,2);
 		assertEquals(m1,m2,"error");
 		
 		

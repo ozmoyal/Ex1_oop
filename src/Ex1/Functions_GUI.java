@@ -11,8 +11,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Map;
-import java.io.FileWriter;
 import com.google.gson.Gson;
 
 public class Functions_GUI implements functions {
@@ -139,12 +137,13 @@ public class Functions_GUI implements functions {
 		// rescale the coordinate system
 		double[] x = new double[resolution];
 		for (int i = 0; i < x.length; i++) {
-			x[i] = Math.abs( (rx.get_max()+rx.get_min()) *i/ resolution);
+			x[i] =  (rx.get_max()+rx.get_min()*i / resolution);
 		}
+		;
 		StdDraw.setXscale(rx.get_min(),rx.get_max());
 		StdDraw.setYscale(ry.get_min(),ry.get_max());
 		
-		//////// vertical lines
+		////// vertical lines
 		StdDraw.setPenColor(Color.LIGHT_GRAY);
 		for (int i = 0; i <= resolution; i=i+10) {
 			StdDraw.line(x[i], ry.get_min(), x[i], ry.get_max());
@@ -182,40 +181,28 @@ public class Functions_GUI implements functions {
 		StdDraw.setPenColor(Color.RED);
 		StdDraw.setPenRadius(0.01);
 		StdDraw.point(x[resolution/2], 1);
-	}
+}
 	}
 
 	@Override
 	public void drawFunctions(String json_file) {
 		Gson gson = new Gson();
-	try {
-		FileReader reader =new FileReader("json_fil");
-		 Map<String, String> map = gson.fromJson(reader, Map.class);
-		 int width=Integer.parseInt(map.get("width"));
-		 System.out.println(width);
-		 int height=Integer.parseInt(map.get("width"));
-		 String str=map.get("Range_X");
-		int i=Integer.parseInt(str.substring(str.indexOf('['),str.indexOf(',')));
-		int j=Integer.parseInt(str.substring(str.indexOf(','),str.indexOf(']')));
-		 Range rx =new Range(i,j);
-		 System.out.println(rx);
-		  str=map.get("Range_Y");
-			 i=Integer.parseInt(str.substring(str.indexOf('['),str.indexOf(',')));
-			 j=Integer.parseInt(str.substring(str.indexOf(','),str.indexOf(']')));
-			 Range ry =new Range(i,j);
-			 int resolution=Integer.parseInt(map.get("resolution"));
-			 drawFunctions( width,  height,  rx,  ry,  resolution);
-			 return;
-		
-	}
-	catch (FileNotFoundException e) 
-	{
-		e.printStackTrace();
-	}
-	drawFunctions( 1000,  600,  new Range(-10,10), new Range(-15,5),  200);
 
+		try 
+		{
+			FileReader reader = new FileReader(json_file);
+			GUI_param parm = gson.fromJson(reader,GUI_param.class);
+			Range rangeX = new Range(parm.Range_X[0],parm.Range_X[1]);
+			Range rangeY = new Range(parm.Range_Y[0],parm.Range_Y[1]);
+			drawFunctions(parm.Width, parm.Height, rangeX, rangeY, parm.Resolution);
+			return;
+		} 
+		catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
+	
 	}
-
 }
 	
 	   
