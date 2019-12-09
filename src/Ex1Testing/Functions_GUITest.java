@@ -1,5 +1,10 @@
 package Ex1Testing;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,12 +28,15 @@ import Ex1.function;
  *
  */
 class Functions_GUITest {
-	public static void main(String[] a) {
+	public static void main(String[] a) throws IOException {
 		Functions_GUI data = FunctionsFactory();
 		int w=1000, h=600, res=200;
 		Range rx = new Range(-10,10);
 		Range ry = new Range(-5,15);
 		data.drawFunctions(w,h,rx,ry,res);
+		Functions_GUI f1 = FunctionsFactory();
+		f1.initFromFile("file.txt");
+		
 	}
 	private Functions_GUI _data=null;
 //	@BeforeAll
@@ -46,8 +54,11 @@ class Functions_GUITest {
 	}
 
 	//@Test
-	void testInitFromFile() {
-	//	fail("Not yet implemented");
+	void testInitFromFile() throws IOException {
+		Functions_GUI f1 = FunctionsFactory();
+		f1.initFromFile("file.txt");
+		
+		
 	}
 
 	//@Test
@@ -63,7 +74,7 @@ class Functions_GUITest {
 
 	@Test
 	void testDrawFunctionsIntIntRangeRangeInt() {
-		_data.drawFunctions();
+		_data.drawFunctions(null);
 		//fail("Not yet implemented");
 	}
 	public static Functions_GUI FunctionsFactory() {
@@ -79,8 +90,8 @@ class Functions_GUITest {
 			cf3.mul(new Polynom(s3[i]));
 		}
 		
-		ComplexFunction cf = new ComplexFunction("plus", p1,p2);
-		ComplexFunction cf4 = new ComplexFunction("div", new Polynom("x +1"),cf3);
+		ComplexFunction cf = new ComplexFunction(p1,p2,"plus");
+		ComplexFunction cf4 = new ComplexFunction( new Polynom("x +1"),cf3,"div");
 		cf4.plus(new Monom("2"));
 		ans.add(cf.copy());
 		ans.add(cf4.copy());

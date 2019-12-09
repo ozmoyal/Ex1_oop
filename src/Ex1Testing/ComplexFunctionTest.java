@@ -103,7 +103,6 @@ class ComplexFunctionTest {
 		double actual=cf1.f(2);
 		double expected=16;
 		assertEquals(expected, actual);
-		
 	}
 
 	@Test
@@ -127,7 +126,7 @@ class ComplexFunctionTest {
 
 	@Test
 	void testGetOp() {
-		function p1=new Polynom("x^2");	
+		function p1=new Polynom("x^2");
 		ComplexFunction cf1 = new ComplexFunction(p1,p1,"plus");
 		assertEquals(Operation.Plus, cf1.getOp());
 	}
