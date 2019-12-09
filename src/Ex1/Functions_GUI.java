@@ -139,7 +139,7 @@ public class Functions_GUI implements functions {
 		for (int i = 0; i < x.length; i++) {
 			x[i] = ( Math.abs((rx.get_max()) + Math.abs(rx.get_min()) )*i / resolution );
 		}
-		;
+	
 		StdDraw.setXscale(rx.get_min(),rx.get_max());
 		StdDraw.setYscale(ry.get_min(),ry.get_max());
 
