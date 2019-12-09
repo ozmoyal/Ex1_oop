@@ -108,7 +108,6 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void saveToFile(String file) throws IOException {
-String fileName = "output.csv";
 		
 		try 
 		{
@@ -139,10 +138,6 @@ String fileName = "output.csv";
 		// TODO Auto-generated method stub
 	}
 
-	public ComplexFunction get(int i) {
-		if ( f_List.get(i)!=null)
-			return new ComplexFunction( f_List.get(i));
-		return null;
-	}
+
 
 }
