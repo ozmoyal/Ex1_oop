@@ -87,7 +87,7 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void initFromFile(String file) throws IOException {
-	
+
 		String line = "";
 		String fileReplace = "f(x)=";
 		try 
@@ -119,9 +119,9 @@ public class Functions_GUI implements functions {
 			StringBuilder sb = new StringBuilder();
 			for(int i=0;i<f_List.size();i++)
 			{
-			sb.append("f(x)=");
-			sb.append(f_List.get(i).toString()+"\n");
-			pw.write(sb.toString());
+				sb.append("f(x)=");
+				sb.append(f_List.get(i).toString()+"\n");
+				pw.write(sb.toString());
 			}
 			pw.close();
 		} 
@@ -139,11 +139,11 @@ public class Functions_GUI implements functions {
 		// rescale the coordinate system
 		double[] x = new double[resolution];
 		for (int i = 0; i < x.length; i++) {
-			x[i] = Math.abs( (rx.get_max()+rx.get_min()) *i/ resolution);
+			x[i] = ( Math.abs((rx.get_max()) + Math.abs(rx.get_min()) )*i / resolution );
 		}
 		StdDraw.setXscale(rx.get_min(),rx.get_max());
 		StdDraw.setYscale(ry.get_min(),ry.get_max());
-		
+
 		//////// vertical lines
 		StdDraw.setPenColor(Color.LIGHT_GRAY);
 		for (int i = 0; i <= resolution; i=i+10) {
@@ -176,13 +176,13 @@ public class Functions_GUI implements functions {
 			{
 				y[i]=f_List.get(i).f(x[j]);
 			}
-		for (int i1 = 0; i1 < resolution; i1++) {
-			StdDraw.line(x[i1], y[i1], x[i1+1], y[i1+1]);
+			for (int i1 = 0; i1 < resolution; i1++) {
+				StdDraw.line(x[i1], y[i1], x[i1+1], y[i1+1]);
+			}
+			StdDraw.setPenColor(Color.RED);
+			StdDraw.setPenRadius(0.01);
+			StdDraw.point(x[resolution/2], 1);
 		}
-		StdDraw.setPenColor(Color.RED);
-		StdDraw.setPenRadius(0.01);
-		StdDraw.point(x[resolution/2], 1);
-	}
 	}
 
 	@Override
@@ -191,9 +191,9 @@ public class Functions_GUI implements functions {
 		try 
 		{
 			FileReader reader = new FileReader(json_file);
-			GUI_param parm = gson.fromJson(reader,GUI_param.class);
-			Range rangeX = new Range(parm.Range_X[0],parm.Range_X[0]);
-			Range rangeY = new Range(parm.Range_Y[0],parm.Range_Y[0]);
+			GUI_param parm    = gson.fromJson(reader,GUI_param.class);
+			Range rangeX      = new Range(parm.Range_X[0],parm.Range_X[1]);
+			Range rangeY      = new Range(parm.Range_Y[0],parm.Range_Y[1]);
 			drawFunctions(parm.Width, parm.Height, rangeX, rangeY, parm.Resolution);
 		} 
 		catch (FileNotFoundException e) {

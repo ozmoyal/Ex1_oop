@@ -82,7 +82,6 @@ class ComplexFunctionTest {
 		ComplexFunction actual= new ComplexFunction(p1);
 		actual.max(p1);
 		assertEquals(expected, actual);
-
 	}
 
 	@Test

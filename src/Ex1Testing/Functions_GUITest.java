@@ -77,7 +77,7 @@ class Functions_GUITest {
 
 	//@Test
 	void testDrawFunctions() {
-		//_data.drawFunctions();
+		_data.drawFunctions("GUI_params.txt");
 	//	fail("Not yet implemented");
 	}
 
