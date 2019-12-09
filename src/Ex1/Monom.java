@@ -65,11 +65,20 @@ public class Monom implements function{
 				}
 				String [] sNum= s.split("x");
 				if(sNum.length >2) {throw new RuntimeException("ERR the input ");}
-				double a=Double.parseDouble(sNum[0]);
+				if(sNum[0].equals("-"))
+					this.set_coefficient(-1);
+				else if(sNum[0].equals("+"))
+					this.set_coefficient(1);
+				else
+				{
+					double a=Double.parseDouble(sNum[0]);
+					this.set_coefficient(a);
+				}
+
 				sNum[1]=sNum[1].substring(1);
 				int b=Integer.parseInt(sNum[1]);
-				this.set_coefficient(a);
 				this.set_power(b);
+
 				return;
 			}
 			else throw new RuntimeException("ERR the input ");

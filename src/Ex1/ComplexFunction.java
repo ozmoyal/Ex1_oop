@@ -273,8 +273,15 @@ public class ComplexFunction implements complex_function {
 		{
 			if(left!=null)
 				return left.toString();
-		} 
-		String ans= getOp().toString()+"("+left.toString()+",";
+		}
+		String ans="";
+		if(getOp().equals("Times"))
+			ans="Mul";
+		else if (getOp().equals("Divid"))
+			ans="Div";
+		else
+			ans=getOp().toString();
+		 ans+="("+left.toString()+",";
 		if(left!=null)
 			ans+= left.toString();
 		return ans+")";

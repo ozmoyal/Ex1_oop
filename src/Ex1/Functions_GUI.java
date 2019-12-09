@@ -11,9 +11,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-
 import com.google.gson.Gson;
-
 
 public class Functions_GUI implements functions {
 	ArrayList<function> f_List = new ArrayList<function>();
@@ -141,12 +139,14 @@ public class Functions_GUI implements functions {
 		for (int i = 0; i < x.length; i++) {
 			x[i] = ( Math.abs((rx.get_max()) + Math.abs(rx.get_min()) )*i / resolution );
 		}
+		;
 		StdDraw.setXscale(rx.get_min(),rx.get_max());
 		StdDraw.setYscale(ry.get_min(),ry.get_max());
 
 		//////// vertical lines
+
 		StdDraw.setPenColor(Color.LIGHT_GRAY);
-		for (int i = 0; i <= resolution; i=i+10) {
+		for (int i = 0; i < resolution; i=i+10) {
 			StdDraw.line(x[i], ry.get_min(), x[i], ry.get_max());
 		}
 		//////// horizontal  lines
@@ -159,7 +159,7 @@ public class Functions_GUI implements functions {
 		int zero=(int)Math.abs( (rx.get_max()+rx.get_min()))/2;
 		StdDraw.line(rx.get_min(),zero , rx.get_max(),zero );
 		StdDraw.setFont(new Font("TimesRoman", Font.BOLD, 15));
-		for (int i = 0; i <= resolution; i=i+10) {
+		for (int i = 0; i < resolution; i=i+10) {
 			StdDraw.text(x[i]-0.07, -0.07, Integer.toString(i-resolution/2));
 		}
 		//////// y axis	
@@ -172,32 +172,46 @@ public class Functions_GUI implements functions {
 		for (int i=0;i<f_List.size();i++)
 		{
 			double [] y=new double[resolution];
+			System.out.println(f_List.get(i).toString());
 			for(int j=0;j<resolution;j++)
 			{
-				y[i]=f_List.get(i).f(x[j]);
+				y[j]=f_List.get(i).f(x[j]);
 			}
-			for (int i1 = 0; i1 < resolution; i1++) {
+			for (int i1 = 0; i1 < resolution-1; i1++) {
 				StdDraw.line(x[i1], y[i1], x[i1+1], y[i1+1]);
 			}
 			StdDraw.setPenColor(Color.RED);
 			StdDraw.setPenRadius(0.01);
 			StdDraw.point(x[resolution/2], 1);
 		}
+		StdDraw.setPenColor(Color.RED);
+		StdDraw.setPenRadius(0.01);
+		StdDraw.point(x[resolution/2], 1);
+
 	}
 
 	@Override
 	public void drawFunctions(String json_file) {
 		Gson gson = new Gson();
+
 		try 
 		{
 			FileReader reader = new FileReader(json_file);
 			GUI_param parm    = gson.fromJson(reader,GUI_param.class);
 			Range rangeX      = new Range(parm.Range_X[0],parm.Range_X[1]);
 			Range rangeY      = new Range(parm.Range_Y[0],parm.Range_Y[1]);
+
 			drawFunctions(parm.Width, parm.Height, rangeX, rangeY, parm.Resolution);
+			return;
 		} 
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
+	
 	}
 }
+	
+	   
+
+	
