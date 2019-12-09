@@ -77,24 +77,22 @@ public class Monom implements function{
 		else if (s.contains("x"))
 		{
 			s=s.substring(0,s.indexOf('x'));
-			if(s.equals("")||s.equals("+"))
+			if(s.equals("")||s.equals("+")||(s.equals("-")))
 			{
-				this.set_coefficient(1);
-				this.set_coefficient(1);
-				return;
-			}
-			if(s.equals("-"))
-			{
-				this.set_coefficient(-1);
+				if(s.equals("-"))
+					this.set_coefficient(-1);
+				else
+					this.set_coefficient(1);
 				this.set_power(1);
 				return;
 			}
-			
+
 			try
 			{
-			double a=Double.parseDouble(s);
-			this.set_coefficient(a);
-			this.set_power(1);
+				double a=Double.parseDouble(s);
+				this.set_coefficient(a);
+				this.set_power(1);
+				return;
 			}
 			catch(ArithmeticException ex) 
 			{ 
@@ -103,17 +101,17 @@ public class Monom implements function{
 		}
 		try
 		{
-		double a=Double.parseDouble(s);
-		this.set_coefficient(a);
+			double a=Double.parseDouble(s);
+			this.set_coefficient(a);
 		}
 		catch(ArithmeticException ex) 
 		{ 
 			System.out.println(ex.getMessage()); 
 		}
-		
+
 
 	}
-//**adding monoms if the power is different throw Err
+	//**adding monoms if the power is different throw Err
 	public void add(Monom m) {
 		if(this.get_power() != m.get_power())
 			throw new RuntimeException("ERR the power of Monom should not be difrfrent "); 
@@ -170,12 +168,12 @@ public class Monom implements function{
 	private static Monom getNewZeroMonom() {return new Monom(ZERO);}
 	private double _coefficient; 
 	private int _power;
-	
+
 	@Override
 	public function initFromString(String s) {
 		return new Monom(s);
 	}
-	
+
 	@Override
 	public function copy() {
 		return new Monom(this.toString());

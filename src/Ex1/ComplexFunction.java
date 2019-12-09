@@ -120,6 +120,9 @@ public class ComplexFunction implements complex_function {
 				return right.f(x);
 			}
 			return left.f(x);
+		case "None":
+			if(this.left != null)
+				return left.f(x);
 		default: 
 			throw new IllegalArgumentException("Invalid operation");
 		}

@@ -14,21 +14,16 @@ class ComplexFunctionTest {
 	@Test
 	void testF() {
 		function cf1 = new ComplexFunction();
-		cf1=cf1.initFromString("Plus(x,2x)");
-		System.out.println(cf1 +"=");
-		System.out.println("ctual ="+cf1.f(2)+"expected= 8");
-		function cf2 = new ComplexFunction();
-		cf2=cf2.initFromString("Mul(2x,2x)");
-		System.out.println(cf2 +"=");
-		System.out.println("actual ="+cf2.f(2)+"expected= 16");
-		function cf3 = new ComplexFunction();
-		cf3=cf3.initFromString("Div(x,2x)");
-		System.out.println(cf3 +"=");
-		System.out.println("actual ="+cf3.f(2)+"expected= 1");
-		function cf4 = new ComplexFunction();
-		cf4 = cf4.initFromString("max(3x,4x)");
-		System.out.println(cf4 +"=");
-		System.out.println("actual ="+cf4.f(2)+"expected= 6");
+		function p1 = new Polynom("x");
+		System.out.println(p1);
+		cf1=cf1.initFromString("div(x,2x)");
+	
+		String str="f(x)=div(x,2x)";
+		str=str.replace("f(x)=","");
+		System.out.println(str);
+		System.out.println(cf1);
+		System.out.println("actual ="+cf1.f(2)+"expected= 8");
+		
 	}
 
 	@Test
