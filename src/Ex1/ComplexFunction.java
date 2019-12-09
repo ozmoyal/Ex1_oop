@@ -26,7 +26,7 @@ public class ComplexFunction implements complex_function {
 
 	}
 
-	public ComplexFunction(function left,function right,String op)
+	public ComplexFunction(String op,function left,function right)
 	{
 
 		if(left != null)
@@ -71,7 +71,7 @@ public class ComplexFunction implements complex_function {
 	}
 
 
-	public ComplexFunction(function left,function right,Operation op)
+	public ComplexFunction(Operation op,function left,function right)
 	{		if(left != null)
 		this.left = left.copy();
 	else
@@ -138,7 +138,7 @@ public class ComplexFunction implements complex_function {
 		String oper = s.substring(0, firstParen);
 		function left = initFromString(s.substring(firstParen+1, indexSep));
 		function right = initFromString(s.substring(indexSep+1,s.length()-1));
-		ComplexFunction ans = new ComplexFunction(left,right,oper);
+		ComplexFunction ans = new ComplexFunction(oper,left,right);
 		return ans;
 	}
 
@@ -163,13 +163,13 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public function copy() {
-		return new ComplexFunction(this.left,this.right,this.op.toString());
+		return new ComplexFunction(this.op.toString(),this.left,this.right);
 	}
 
 	@Override
 	public void plus(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.right,this.left,this.op);
+			function cf1 = new ComplexFunction(this.op,this.right,this.left);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Plus;
@@ -183,7 +183,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void mul(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.right,this.left,this.op);
+			function cf1 = new ComplexFunction(this.op,this.right,this.left);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Times;
@@ -198,7 +198,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void div(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.right,this.left,this.op);
+			function cf1 = new ComplexFunction(this.op,this.right,this.left);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Divid;
@@ -213,7 +213,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void max(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.right,this.left,this.op);
+			function cf1 = new ComplexFunction(this.op,this.right,this.left);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Max;
@@ -228,7 +228,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void min(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.right,this.left,this.op);
+			function cf1 = new ComplexFunction(this.op,this.right,this.left);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Min;
@@ -242,7 +242,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void comp(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.right,this.left,this.op);
+			function cf1 = new ComplexFunction(this.op,this.right,this.left);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Comp;

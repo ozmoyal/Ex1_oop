@@ -31,7 +31,7 @@ class ComplexFunctionTest {
 	void testInitFromString() {
 		function expected = new ComplexFunction();
 		function p1 = new Polynom("x^2");
-		ComplexFunction actual = new ComplexFunction(p1,p1,"plus");
+		ComplexFunction actual = new ComplexFunction("plus",p1,p1);
 		expected=expected.initFromString(actual.toString());
 		assertEquals(expected, actual,"error");
 	}
@@ -40,7 +40,7 @@ class ComplexFunctionTest {
 	void testCopy() {
 		function expected = new ComplexFunction();
 		function p1 = new Polynom("x^2");
-		ComplexFunction actual = new ComplexFunction(p1,p1,"plus");
+		ComplexFunction actual = new ComplexFunction("plus",p1,p1);
 		expected=actual.copy();
 		assertEquals(expected, actual,"error");
 	}
@@ -48,7 +48,7 @@ class ComplexFunctionTest {
 	@Test
 	void testPlus() {
 		function p1=new Polynom("x^2");
-		ComplexFunction expected = new ComplexFunction(p1,p1,"plus");
+		ComplexFunction expected = new ComplexFunction("plus",p1,p1);
 		ComplexFunction actual= new ComplexFunction(p1);
 		actual.plus(p1);
 		
@@ -60,7 +60,7 @@ class ComplexFunctionTest {
 	@Test
 	void testMul() {
 		function p1=new Polynom("x^2");
-		ComplexFunction expected = new ComplexFunction(p1,p1,"mul");
+		ComplexFunction expected = new ComplexFunction("mul",p1,p1);
 		ComplexFunction actual= new ComplexFunction(p1);
 		actual.mul(p1);
 		assertEquals(expected, actual);
@@ -69,7 +69,7 @@ class ComplexFunctionTest {
 	@Test
 	void testDiv() {
 		function p1=new Polynom("x^2");
-		ComplexFunction expected = new ComplexFunction(p1,p1,"div");
+		ComplexFunction expected = new ComplexFunction("div",p1,p1);
 		ComplexFunction actual= new ComplexFunction(p1);
 		actual.div(p1);
 		assertEquals(expected, actual);
@@ -78,7 +78,7 @@ class ComplexFunctionTest {
 	@Test
 	void testMax() {
 		function p1=new Polynom("x^2");
-		ComplexFunction expected = new ComplexFunction(p1,p1,"max");
+		ComplexFunction expected = new ComplexFunction("max",p1,p1);
 		ComplexFunction actual= new ComplexFunction(p1);
 		actual.max(p1);
 		assertEquals(expected, actual);
@@ -88,7 +88,7 @@ class ComplexFunctionTest {
 	@Test
 	void testMin() {
 		function p1=new Polynom("x^2");
-		ComplexFunction cf1 = new ComplexFunction(p1,p1,"plus");
+		ComplexFunction cf1 = new ComplexFunction("plus",p1,p1);
 		cf1.min(p1);
 		double actual=cf1.f(2);
 		double expected=4;
@@ -98,7 +98,7 @@ class ComplexFunctionTest {
 	@Test
 	void testComp() {
 		function p1=new Polynom("x^2");
-		ComplexFunction cf1 = new ComplexFunction(p1,p1,"comp");
+		ComplexFunction cf1 = new ComplexFunction("comp",p1,p1);
 		double actual=cf1.f(2);
 		double expected=16;
 		assertEquals(expected, actual);
@@ -107,7 +107,7 @@ class ComplexFunctionTest {
 	@Test
 	void testLeft() {
 		function p1=new Polynom("x^2");
-		ComplexFunction expected = new ComplexFunction(p1,p1,"comp");
+		ComplexFunction expected = new ComplexFunction("comp",p1,p1);
 		ComplexFunction actual= new ComplexFunction(p1);
 		actual.comp(p1);
 		assertEquals(expected, actual);
@@ -117,7 +117,7 @@ class ComplexFunctionTest {
 	@Test
 	void testRight() {
 		function expected=new Polynom("x^2");
-		ComplexFunction cf1 = new ComplexFunction(expected,expected,"comp");
+		ComplexFunction cf1 = new ComplexFunction("comp",expected,expected);
 		function actual=cf1.right();
 		assertEquals(expected, actual);
 		
@@ -126,7 +126,7 @@ class ComplexFunctionTest {
 	@Test
 	void testGetOp() {
 		function p1=new Polynom("x^2");
-		ComplexFunction cf1 = new ComplexFunction(p1,p1,"plus");
+		ComplexFunction cf1 = new ComplexFunction("plus",p1,p1);
 		assertEquals(Operation.Plus, cf1.getOp());
 	}
 
