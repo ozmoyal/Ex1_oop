@@ -49,12 +49,12 @@ class Functions_GUITest {
 		catch(Exception e) {e.printStackTrace();}
 		
 		String JSON_param_file = "GUI_params.txt";
-		data.drawFunctions(JSON_param_file);
+	//	data.drawFunctions(JSON_param_file);
 	}
 	private functions _data=null;
-//	@BeforeAll
-//	static void setUpBeforeClass() throws Exception {
-//	}
+	//@BeforeAll
+	static void setUpBeforeClass() throws Exception {
+	}
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -94,10 +94,12 @@ class Functions_GUITest {
 		ComplexFunction cf3 = new ComplexFunction(p3);
 		for(int i=1;i<s3.length;i++) {
 			cf3.mul(new Polynom(s3[i]));
+			System.out.println(cf3);
 		}
 		
 		ComplexFunction cf = new ComplexFunction(Operation.Plus, p1,p2);
 		ComplexFunction cf4 = new ComplexFunction("div", new Polynom("x +1"),cf3);
+		System.out.println(cf4);
 
 		cf4.plus(new Monom("2"));
 		ans.add(cf.copy());
@@ -113,8 +115,10 @@ class Functions_GUITest {
 		function f = iter.next();
 		ComplexFunction max = new ComplexFunction(f);
 		ComplexFunction min = new ComplexFunction(f);
+		int i=0;
 		while(iter.hasNext()) {
 			f = iter.next();
+			System.out.println("f"+i+" = "+f);
 			max.max(f);
 			min.min(f);
 		}

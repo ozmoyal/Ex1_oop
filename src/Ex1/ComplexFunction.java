@@ -273,9 +273,9 @@ public class ComplexFunction implements complex_function {
 				return left.toString();
 		}
 		String ans="";
-		if(getOp().equals("Times"))
+		if(getOp().toString().equals("Times"))
 			ans="Mul";
-		else if (getOp().equals("Divid"))
+		else if (getOp().toString().equals("Divid"))
 			ans="Div";
 		else
 			ans=getOp().toString();

@@ -136,9 +136,9 @@ public class Functions_GUI implements functions {
 		StdDraw.setCanvasSize(width,height);
 		// rescale the coordinate system
 		double[] x = new double[resolution];
-		for (int i = 0; i < x.length; i++) {
-			x[i] = ( Math.abs((rx.get_max()) + Math.abs(rx.get_min()) )*i / resolution );
-		}
+//		for (int i = (int)rx.get_min(); i < rx.get_max(); i += Math.abs((rx.get_max()) + Math.abs(rx.get_min()) )*i / resolution) {
+//			StdDraw.line(rx.get_min(), , x1, y1);
+//		}
 	
 		StdDraw.setXscale(rx.get_min(),rx.get_max());
 		StdDraw.setYscale(ry.get_min(),ry.get_max());
@@ -207,7 +207,7 @@ public class Functions_GUI implements functions {
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
+		//drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
 	
 	}
 }
