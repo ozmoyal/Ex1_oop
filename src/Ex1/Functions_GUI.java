@@ -86,7 +86,6 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void initFromFile(String file) throws IOException {
-
 		String line = "";
 		String fileReplace = "f(x)=";
 		try 
@@ -102,6 +101,7 @@ public class Functions_GUI implements functions {
 				f_List.add(cf1);
 
 			}
+			br.close();
 		} 
 		catch (IOException e) 
 		{
@@ -127,20 +127,26 @@ public class Functions_GUI implements functions {
 		catch (FileNotFoundException e) 
 		{
 			e.printStackTrace();
-			return;
+			//return;
 		}
 	}
 
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
-		double xAvg = (Math.abs(rx.get_max()) + Math.abs(rx.get_min())) /2;
-		double yAvg = (Math.abs(ry.get_max()) + Math.abs(ry.get_min())) /2;
 		StdDraw.setCanvasSize(width,height);
-		double[] x = new double[resolution];
-		StdDraw.setXscale(rx.get_min(), rx.get_max());
-		StdDraw.setYscale(ry.get_min(), ry.get_max());
+
+		// rescale the coordinate system
+		double steps= (Math.abs(rx.get_max())+Math.abs(rx.get_min()))/resolution;
+
+		StdDraw.setXscale(rx.get_min(),rx.get_max());
+		StdDraw.setYscale(ry.get_min(),ry.get_max());
+		//////// vertical lines
 		StdDraw.setPenColor(Color.LIGHT_GRAY);
-		for (double i = ry.get_min(); i <= ry.get_max() ; i+=0.5) {
+		for (double i = rx.get_min(); i <= Math.abs(rx.get_max())+Math.abs(rx.get_min()); i=i+0.5) {
+			StdDraw.line(rx.get_min()+i, ry.get_max(), rx.get_min()+i, ry.get_min());
+		}
+		//////// horizontal  lines
+		for (double i = ry.get_min(); i <= ry.get_max(); i=i+0.5) {
 			StdDraw.line(rx.get_min(), i, rx.get_max(), i);
 		}
 		for (double i = rx.get_min(); i <= rx.get_max() ; i+=0.5) {
@@ -148,22 +154,41 @@ public class Functions_GUI implements functions {
 		}
 		StdDraw.setPenColor(Color.BLACK);
 		StdDraw.setPenRadius(0.005);
-		StdDraw.line(rx.get_min(), 0, rx.get_max() , 0);
-		StdDraw.line(0,ry.get_min(), 0,ry.get_max());
-		StdDraw.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		for (double i = 0; i < x.length; i++) {
-			StdDraw.text(-.3, ry.get_min() +i, Double.toString(i-5));
+		StdDraw.line(rx.get_min(),0 , rx.get_max(),0);
+		StdDraw.setFont(new Font("TimesRoman", Font.BOLD, 15));
+		for (double i = rx.get_min(); i <= Math.abs(rx.get_max())+Math.abs(rx.get_min()); i++){
+			StdDraw.text(i-0.7, -0.7, Integer.toString((int)i));
 		}
-		for (double i = 0; i < x.length; i++) {
-			StdDraw.text( rx.get_min() +i,-.3, Double.toString(i-10));
+		//////// y axis	
+		StdDraw.line(0, ry.get_min(), 0, ry.get_max());
+		for (double i = ry.get_min(); i <= ry.get_max(); i++) {
+			StdDraw.text(-0.7, i-0.07, Integer.toString((int)i));
 		}
-		//double[][] y = new double[][];
+		// plot the approximation to the function
+		for (int i=0;i<f_List.size();i++)	
+		{
+			double [][] y=new double[2][resolution];
+			System.out.println(f_List.get(i).toString());
+			double help=rx.get_min();
+			Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK}; 
+			for(int j=0;j<resolution;j++)
+			{
+				y[0][j]=help;
+				y[1][j]=f_List.get(i).f(y[0][j]);
+				help=help+steps;
+
+			}
+			StdDraw.setPenColor(Colors[i%Colors.length]);
+			StdDraw.setPenRadius(0.005);
+			for (int j = 0; j <resolution-1 ; j++) {
+				StdDraw.line(y[0][j], y[1][j], y[0][j+1], y[1][j+1]);
+			}
+		}
 	}
 
 	@Override
 	public void drawFunctions(String json_file) {
 		Gson gson = new Gson();
-
 		try 
 		{
 			FileReader reader = new FileReader(json_file);
@@ -178,10 +203,9 @@ public class Functions_GUI implements functions {
 			e.printStackTrace();
 		}
 		//drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
-	
+
 	}
 }
-	
-	   
 
-	
+
+

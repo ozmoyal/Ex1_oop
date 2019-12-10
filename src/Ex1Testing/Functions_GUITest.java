@@ -1,5 +1,7 @@
 package Ex1Testing;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.Iterator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,28 +34,33 @@ import Ex1.functions;
 class Functions_GUITest {
 	public static void main(String[] a) {
 		functions data = FunctionsFactory();
-
+		functions data0 = null;
 		int w=1000, h=600, res=200;
 		Range rx = new Range(-10,10);
 		Range ry = new Range(-5,15);
-		data.drawFunctions(w,h,rx,ry,res);
-		String file = "function_file.txt";
-		//String file2 = "function_file2.txt";
+		//data.drawFunctions(w,h,rx,ry,res);
+		String file0 = "function_file.txt";
+		String file = "function_file1.txt";
+		String file2 = "function_file2.txt";
 
 		try {
-			data.saveToFile(file);
-			Functions_GUI data2 = new Functions_GUI();
-			data2.initFromFile(file);
+			//data0.initFromFile(file);
+			//data.saveToFile(file);
+			//Functions_GUI data2 = new Functions_GUI();
+			//data2.initFromFile(file);
 			//data.saveToFile(file2);
+			data0.drawFunctions("GUI_params.txt");
 		}
 		catch(Exception e) {e.printStackTrace();}
 		
 		String JSON_param_file = "GUI_params.txt";
 	//	data.drawFunctions(JSON_param_file);
+		
 	}
 	private functions _data=null;
 	//@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		
 	}
 
 	@BeforeEach
@@ -68,18 +75,17 @@ class Functions_GUITest {
 
 	//@Test
 	void testInitFromFile() {
-	//	fail("Not yet implemented");
+	//_data.initFromFile("function_file1.txt");
 	}
 
 	//@Test
 	void testSaveToFile() {
 		
-		
 	}
 
 	//@Test
 	void testDrawFunctions() {
-		_data.drawFunctions("GUI_params.txt");
+		//_data.drawFunctions("GUI_params.txt");
 	//	fail("Not yet implemented");
 	}
 
