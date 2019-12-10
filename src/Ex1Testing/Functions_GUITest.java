@@ -45,7 +45,6 @@ class Functions_GUITest {
 			Functions_GUI data2 = new Functions_GUI();
 			data2.initFromFile(file);
 			//data.saveToFile(file2);
-
 		}
 		catch(Exception e) {e.printStackTrace();}
 		
@@ -98,7 +97,6 @@ class Functions_GUITest {
 			System.out.println(cf3);
 		}
 		
-
 		ComplexFunction cf = new ComplexFunction(Operation.Plus, p1,p2);
 		ComplexFunction cf4 = new ComplexFunction("div", new Polynom("x +1"),cf3);
 		System.out.println(cf4);

@@ -137,6 +137,7 @@ public class Functions_GUI implements functions {
 		
 		// rescale the coordinate system
 		double steps= (Math.abs(rx.get_max())+Math.abs(rx.get_min()))/resolution;
+
 		StdDraw.setXscale(rx.get_min(),rx.get_max());
 		StdDraw.setYscale(ry.get_min(),ry.get_max());
 		//////// vertical lines
@@ -202,7 +203,7 @@ public class Functions_GUI implements functions {
 		catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
+		//drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
 	
 	}
 }
