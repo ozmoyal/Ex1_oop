@@ -32,32 +32,32 @@ import Ex1.functions;
  *
  */
 class Functions_GUITest {
-	public static void main(String[] a) {
-		functions data = FunctionsFactory();
-		functions data0 = null;
-		int w=1000, h=600, res=200;
-		Range rx = new Range(-10,10);
-		Range ry = new Range(-5,15);
-		//data.drawFunctions(w,h,rx,ry,res);
-		String file0 = "function_file.txt";
-		String file = "function_file1.txt";
-		String file2 = "function_file2.txt";
-
-		try {
-			//data0.initFromFile(file);
-			//data.saveToFile(file);
-			//Functions_GUI data2 = new Functions_GUI();
-			//data2.initFromFile(file);
-			//data.saveToFile(file2);
-			data0.drawFunctions("GUI_params.txt");
-		}
-		catch(Exception e) {e.printStackTrace();}
-		
-		String JSON_param_file = "GUI_params.txt";
-	//	data.drawFunctions(JSON_param_file);
-		
-	}
-	private functions _data=null;
+//	public static void main(String[] a) {
+//		functions data = FunctionsFactory();
+//		functions data0 = null;
+//		int w=1000, h=600, res=200;
+//		Range rx = new Range(-10,10);
+//		Range ry = new Range(-5,15);
+//		data.drawFunctions(w,h,rx,ry,res);
+//		String file0 = "function_file.txt";
+//		String file = "function_file1.txt";
+//		String file2 = "function_file2.txt";
+//
+//		try {
+//			//data0.initFromFile(file);
+//			//data.saveToFile(file);
+//			//Functions_GUI data2 = new Functions_GUI();
+//			//data2.initFromFile(file);
+//			//data.saveToFile(file2);
+//			data0.drawFunctions("GUI_params.txt");
+//		}
+//		catch(Exception e) {e.printStackTrace();}
+//		
+//		String JSON_param_file = "GUI_params.txt";
+//	//	data.drawFunctions(JSON_param_file);
+//		
+//	}
+	private functions _data = null;
 	//@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		
@@ -75,19 +75,52 @@ class Functions_GUITest {
 
 	//@Test
 	void testInitFromFile() {
-	//_data.initFromFile("function_file1.txt");
+		try 
+		{
+			Functions_GUI fun = new Functions_GUI();
+			fun.initFromFile("function_file.txt");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	//@Test
 	void testSaveToFile() {
-		
+		try 
+		{
+			Functions_GUI fun = new Functions_GUI();
+			fun.saveToFile("function_file.txt");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	@Test
+	void testDrawFunctionsIntIntRangeRangeInt() {
+		functions t1 = FunctionsFactory();
+		int w = 1000;
+		int h = 600;
+		int r = 200;
+		Range rx = new Range(-20,20);
+		Range ry = new Range(-5,15);
+		t1.drawFunctions(w, h, rx, ry, r);
 	}
 
 	//@Test
-	void testDrawFunctions() {
-		//_data.drawFunctions("GUI_params.txt");
-	//	fail("Not yet implemented");
-	}
+//	void testDrawFunctions() {
+//		try {
+//			functions data0 = null;
+//			data0.initFromFile("function_file.txt");
+//			data0.drawFunctions("GUI_params");
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//	}
 
 	public static functions FunctionsFactory() {
 		functions ans = new Functions_GUI();
