@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import com.sun.tools.sjavac.server.SysInfo;
+
 import Ex1.ComplexFunction;
 import Ex1.Operation;
 import Ex1.Polynom;
@@ -31,8 +33,11 @@ class ComplexFunctionTest {
 	void testInitFromString() {
 		function expected = new ComplexFunction();
 		function p1 = new Polynom("x^2");
+		Polynom p =new Polynom("x");
 		ComplexFunction actual = new ComplexFunction("plus",p1,p1);
 		expected=expected.initFromString(actual.toString());
+		ComplexFunction cf=new 	ComplexFunction("plus",p,expected);
+		System.out.println(cf);
 		assertEquals(expected, actual,"error");
 	}
 

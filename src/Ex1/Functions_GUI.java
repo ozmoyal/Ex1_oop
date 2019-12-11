@@ -92,6 +92,7 @@ public class Functions_GUI implements functions {
 		{
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = br.readLine();
+			int i=0;
 			while (line != null) 
 			{
 				line = line.replaceAll(fileReplace,"");
