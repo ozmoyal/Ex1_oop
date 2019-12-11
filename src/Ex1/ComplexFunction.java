@@ -30,16 +30,11 @@ public class ComplexFunction implements complex_function {
 	{
 		if(left != null)
 			this.left = left.initFromString(left.toString());
-		else
-			this.left=null;
 
 		if(right != null)
 			this.right = right.initFromString(right.toString());
-		else
-			this.left=null;
 
 		op = op.toLowerCase();
-
 		switch(op)
 		{
 		case "plus":
@@ -53,6 +48,8 @@ public class ComplexFunction implements complex_function {
 			break;
 		case "none":
 			this.op=Operation.None;
+			if((left !=null)&&(right!=null))
+				throw new IllegalArgumentException("Invalid operation");
 			break;
 		case "comp":
 			this.op=Operation.Comp;
@@ -69,17 +66,13 @@ public class ComplexFunction implements complex_function {
 		}
 	}
 
-
 	public ComplexFunction(Operation op,function left,function right)
-	{		if(left != null)
-		this.left = left.copy();
-	else
-		this.left=null;
+	{		
+	if(left != null)
+		this.left = left.initFromString(left.toString());
 
 	if(right != null)
-		this.right = right.copy();
-	else
-		this.left=null;
+		this.right = right.initFromString(right.toString());
 	this.op = op;
 	}
 
@@ -91,8 +84,8 @@ public class ComplexFunction implements complex_function {
 			if(left!=null)
 				if(right!=null)
 					return left.f(x) + right.f(x);
-				return left.f(x);
-				
+			return left.f(x);
+
 		case "Divid":
 			try 
 			{
@@ -129,9 +122,12 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public function initFromString(String s) {
-		s=s.replaceAll(" ", "");
-		if(s.indexOf("(") == -1 && s.indexOf(")") == -1)
-			return new Polynom(s);
+		s=s.replaceAll("//s+" , "");
+		if(s.indexOf("(") == -1 && s.indexOf(")") == -1) 
+		{
+			Polynom m = new Polynom();
+			return m.initFromString(s);
+		}
 		int firstParen = s.indexOf("(");
 		int indexSep = comIndex(s,firstParen);
 		String oper = s.substring(0, firstParen);
@@ -162,13 +158,13 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public function copy() {
-		return new ComplexFunction(this.op,this.left,this.right);
+		return new ComplexFunction(this.op,left.copy(),right.copy());
 	}
 
 	@Override
 	public void plus(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.op,this.right,this.left);
+			function cf1 = new ComplexFunction(this.op,this.left,this.right);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Plus;
@@ -182,7 +178,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void mul(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.op,this.right,this.left);
+			function cf1 = new ComplexFunction(this.op,this.left,this.right);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Times;
@@ -197,7 +193,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void div(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.op,this.right,this.left);
+			function cf1 = new ComplexFunction(this.op,this.left,this.right);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Divid;
@@ -212,7 +208,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void max(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.op,this.right,this.left);
+			function cf1 = new ComplexFunction(this.op,this.left,this.right);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Max;
@@ -227,7 +223,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void min(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.op,this.right,this.left);
+			function cf1 = new ComplexFunction(this.op,this.left,this.right);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Min;
@@ -241,7 +237,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void comp(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.op,this.right,this.left);
+			function cf1 = new ComplexFunction(this.op,this.left,this.right);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Comp;
@@ -280,16 +276,16 @@ public class ComplexFunction implements complex_function {
 			ans="Div";
 		else
 			ans=getOp().toString();
-		 ans+="("+left.toString()+",";
+		ans+="("+left.toString()+",";
 		if(left!=null)
-			ans+= left.toString();
+			ans+= right.toString();
 		return ans+")";
 
 	}
-	
+
 	public boolean equals(Object cf1) {
 		if(!(cf1 instanceof function))
-				return false;
+			return false;
 		return visualEquals((function)cf1,-1,1);
 	}
 

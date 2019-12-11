@@ -86,21 +86,22 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void initFromFile(String file) throws IOException {
-		String line = "";
 		String fileReplace = "f(x)=";
+		ArrayList<function> file_functions = new ArrayList<function>();
 		try 
 		{
 			BufferedReader br = new BufferedReader(new FileReader(file));
-			while ((line = br.readLine()) != null) 
+			String line = br.readLine();
+			while (line != null) 
 			{
-				String funInfo = line.replace(fileReplace,"");
-				//System.out.println("funInfo ="+funInfo);
+				line = line.replaceAll(fileReplace,"");
+				line.replaceAll("//s+", "");
 				function cf1 = new ComplexFunction();
-				cf1=cf1.initFromString(funInfo);
-				//System.out.println(cf1);
-				f_List.add(cf1);
-
+				cf1=cf1.initFromString(line);
+				file_functions.add(cf1);
+				line = br.readLine();
 			}
+			f_List=file_functions;
 			br.close();
 		} 
 		catch (IOException e) 
@@ -168,8 +169,8 @@ public class Functions_GUI implements functions {
 		for (int i=0;i<f_List.size();i++)	
 		{
 			double [][] y=new double[2][resolution];
-			System.out.println(f_List.get(i).toString());
 			double help=rx.get_min();
+			System.out.println(f_List.get(i).toString());
 			Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK}; 
 			for(int j=0;j<resolution;j++)
 			{
@@ -180,7 +181,7 @@ public class Functions_GUI implements functions {
 			}
 			StdDraw.setPenColor(Colors[i%Colors.length]);
 			StdDraw.setPenRadius(0.005);
-			for (int j = 0; j <resolution-1 ; j++) {
+			for (int j = 0; j <resolution-1; j++) {
 				StdDraw.line(y[0][j], y[1][j], y[0][j+1], y[1][j+1]);
 			}
 		}
