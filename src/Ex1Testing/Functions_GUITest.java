@@ -1,7 +1,5 @@
 package Ex1Testing;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Iterator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -34,15 +32,14 @@ import Ex1.functions;
 class Functions_GUITest {
 	public static void main(String[] a) {
 		functions data = FunctionsFactory();
-
-		int w=1000, h=600, res=200;
+       	int w=1000, h=600, res=200;
 		Range rx = new Range(-10,10);
 		Range ry = new Range(-5,15);
 		data.drawFunctions(w,h,rx,ry,res);
 		String file = "function_file.txt";
 		String file2 = "function_file2.txt";
-
-		try {
+		try 
+		{
 			data.saveToFile(file);
 			Functions_GUI data2 = new Functions_GUI();
 			data2.initFromFile(file);
@@ -54,11 +51,9 @@ class Functions_GUITest {
 	//	data.drawFunctions(JSON_param_file);
 	}
 	private functions _data=null;
-
-	//@BeforeAll
-	static void setUpBeforeClass() throws Exception {
-		
-	}
+//	@BeforeAll
+//	static void setUpBeforeClass() throws Exception {
+//	}
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -67,61 +62,31 @@ class Functions_GUITest {
 
 	//@Test
 	void testFunctions_GUI() {
-		//fail("Not yet implemented");
+	//	fail("Not yet implemented");
 	}
 
 	//@Test
 	void testInitFromFile() {
-		try 
-		{
-			Functions_GUI fun = new Functions_GUI();
-			fun.initFromFile("function_file.txt");
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+	//	fail("Not yet implemented");
+	}
+
+	//@Test
+	void testSaveToFile() {
+		
 		
 	}
 
-     //@Test
-	void testSaveToFile() {
-		try 
-		{
-			//Functions_GUI fun = new Functions_GUI();
-			_data.saveToFile("function_file2.txt");
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
+	@Test
+	void testDrawFunctions() {
+		//_data.drawFunctions();
+	//	fail("Not yet implemented");
 	}
-	
+
 	//@Test
 	void testDrawFunctionsIntIntRangeRangeInt() {
-		functions t1 = FunctionsFactory();
-		int w = 1000;
-		int h = 600;
-		int r = 200;
-		Range rx = new Range(-20,20);
-		Range ry = new Range(-5,15);
-		t1.drawFunctions(w, h, rx, ry, r);
+	//	_data.drawFunctions("GUI_params.txt");
+		//fail("Not yet implemented");
 	}
-
-	//@Test
-	void testDrawFunctions() {
-		try {
-//			Functions_GUI data0 = new Functions_GUI();
-//			data0.initFromFile("function_file2.txt");
-//			data0.drawFunctions("GUI_params.txt");
-			_data.drawFunctions("GUI_params.txt");
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-
 	public static functions FunctionsFactory() {
 		functions ans = new Functions_GUI();
 		String s1 = "3.1 +2.4x^2 -x^4";
@@ -136,7 +101,7 @@ class Functions_GUITest {
 		}
 		
 		ComplexFunction cf = new ComplexFunction(Operation.Plus, p1,p2);
-		ComplexFunction cf4 = new ComplexFunction("div", new Polynom("x +1"),cf3);
+		ComplexFunction cf4 = new ComplexFunction("div",new Polynom("x+1"),cf3);
 		cf4.plus(new Monom("2"));
 		ans.add(cf.copy());
 		ans.add(cf4.copy());
@@ -157,7 +122,7 @@ class Functions_GUITest {
 			min.min(f);
 		}
 		ans.add(max);
-		ans.add(min);		
+		ans.add(min);	
 		return ans;
 	}
 }

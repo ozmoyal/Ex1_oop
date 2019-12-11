@@ -19,17 +19,14 @@ class ComplexFunctionTest {
 		function p1 = new Polynom("x");
 		System.out.println(p1);
 		cf1=cf1.initFromString("div(x,2x)");
-	
 		String str="f(x)=div(x,2x)";
 		str=str.replace("f(x)=","");
 		System.out.println(str);
 		System.out.println(cf1);
-		System.out.println("actual ="+cf1.f(2)+"expected= 8");
-		
+		System.out.println("actual ="+cf1.f(2)+"expected= 8");	
 	}
 
 	@Test
-
 	void testInitFromString() {
 		function expected = new ComplexFunction();
 		function p1 = new Polynom("x^2");
