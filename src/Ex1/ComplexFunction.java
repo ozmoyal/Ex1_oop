@@ -36,7 +36,7 @@ public class ComplexFunction implements complex_function {
 		if(right != null)
 			this.right = right.initFromString(right.toString());
 		else
-			this.left=null;
+			this.right=null;
 
 		op = op.toLowerCase();
 
@@ -53,6 +53,8 @@ public class ComplexFunction implements complex_function {
 			break;
 		case "none":
 			this.op=Operation.None;
+			if((left !=null)&&(right!=null))
+				throw new IllegalArgumentException("Invalid operation");
 			break;
 		case "comp":
 			this.op=Operation.Comp;
@@ -68,7 +70,6 @@ public class ComplexFunction implements complex_function {
 			break;
 		}
 	}
-
 
 	public ComplexFunction(Operation op,function left,function right)
 	{		if(left != null)
@@ -91,8 +92,8 @@ public class ComplexFunction implements complex_function {
 			if(left!=null)
 				if(right!=null)
 					return left.f(x) + right.f(x);
-				return left.f(x);
-				
+			return left.f(x);
+
 		case "Divid":
 			try 
 			{
@@ -279,16 +280,16 @@ public class ComplexFunction implements complex_function {
 			ans="Div";
 		else
 			ans=getOp().toString();
-		 ans+="("+left.toString()+",";
+		ans+="("+left.toString()+",";
 		if(left!=null)
 			ans+= left.toString();
 		return ans+")";
 
 	}
-	
+
 	public boolean equals(Object cf1) {
 		if(!(cf1 instanceof function))
-				return false;
+			return false;
 		return visualEquals((function)cf1,-1,1);
 	}
 

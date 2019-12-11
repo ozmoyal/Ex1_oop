@@ -38,13 +38,13 @@ class Functions_GUITest {
 		Range ry = new Range(-5,15);
 		data.drawFunctions(w,h,rx,ry,res);
 		String file = "function_file.txt";
-		//String file2 = "function_file2.txt";
+		String file2 = "function_file2.txt";
 
 		try {
 			data.saveToFile(file);
 			Functions_GUI data2 = new Functions_GUI();
 			data2.initFromFile(file);
-			//data.saveToFile(file2);
+			data.saveToFile(file2);
 		}
 		catch(Exception e) {e.printStackTrace();}
 		
@@ -66,12 +66,12 @@ class Functions_GUITest {
 		//fail("Not yet implemented");
 	}
 
-	//@Test
+	@Test
 	void testInitFromFile() {
 	//	fail("Not yet implemented");
 	}
 
-	//@Test
+     @Test
 	void testSaveToFile() {
 		
 		
@@ -94,12 +94,10 @@ class Functions_GUITest {
 		ComplexFunction cf3 = new ComplexFunction(p3);
 		for(int i=1;i<s3.length;i++) {
 			cf3.mul(new Polynom(s3[i]));
-			System.out.println(cf3);
 		}
 		
 		ComplexFunction cf = new ComplexFunction(Operation.Plus, p1,p2);
 		ComplexFunction cf4 = new ComplexFunction("div", new Polynom("x +1"),cf3);
-		System.out.println(cf4);
 
 		cf4.plus(new Monom("2"));
 		ans.add(cf.copy());
@@ -118,7 +116,6 @@ class Functions_GUITest {
 		int i=0;
 		while(iter.hasNext()) {
 			f = iter.next();
-			System.out.println("f"+i+" = "+f);
 			max.max(f);
 			min.min(f);
 		}
