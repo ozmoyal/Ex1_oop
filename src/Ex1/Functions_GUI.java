@@ -13,6 +13,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import com.google.gson.Gson;
 
+
 public class Functions_GUI implements functions {
 	ArrayList<function> f_List = new ArrayList<function>();
 
@@ -85,7 +86,11 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void initFromFile(String file) throws IOException {
+<<<<<<< HEAD
 
+=======
+		String line = "";
+>>>>>>> 2335654251ec9dfc4256e8fd61661aeeb02afebe
 		String fileReplace = "f(x)=";
 		ArrayList<function> file_functions = new ArrayList<function>();
 		try 
@@ -101,7 +106,11 @@ public class Functions_GUI implements functions {
 				line = br.readLine();
 
 			}
+<<<<<<< HEAD
 			f_List=file_functions;
+=======
+			br.close();
+>>>>>>> 2335654251ec9dfc4256e8fd61661aeeb02afebe
 		} 
 		catch (IOException e) 
 		{
@@ -127,15 +136,14 @@ public class Functions_GUI implements functions {
 		catch (FileNotFoundException e) 
 		{
 			e.printStackTrace();
-			return;
+			//return;
 		}
 	}
 
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
-		// number of line segments to plot
 		StdDraw.setCanvasSize(width,height);
-		
+
 		// rescale the coordinate system
 		double steps= (Math.abs(rx.get_max())+Math.abs(rx.get_min()))/resolution;
 
@@ -150,7 +158,9 @@ public class Functions_GUI implements functions {
 		for (double i = ry.get_min(); i <= ry.get_max(); i=i+0.5) {
 			StdDraw.line(rx.get_min(), i, rx.get_max(), i);
 		}
-		//////// x axis		
+		for (double i = rx.get_min(); i <= rx.get_max() ; i+=0.5) {
+			StdDraw.line(i,ry.get_min(), i,ry.get_max());
+		}
 		StdDraw.setPenColor(Color.BLACK);
 		StdDraw.setPenRadius(0.005);
 		StdDraw.line(rx.get_min(),0 , rx.get_max(),0);
@@ -168,21 +178,19 @@ public class Functions_GUI implements functions {
 		{
 			double [][] y=new double[2][resolution];
 			double help=rx.get_min();
-		    Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK}; 
+			Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK}; 
 			for(int j=0;j<resolution;j++)
 			{
 				y[0][j]=help;
 				y[1][j]=f_List.get(i).f(y[0][j]);
 				help=help+steps;
-				
+
 			}
 			StdDraw.setPenColor(Colors[i%Colors.length]);
 			StdDraw.setPenRadius(0.005);
 			for (int j = 0; j <resolution-1 ; j++) {
 				StdDraw.line(y[0][j], y[1][j], y[0][j+1], y[1][j+1]);
-				}
-			;
-			
+			}
 		}
 	}
 
@@ -203,10 +211,8 @@ public class Functions_GUI implements functions {
 			e.printStackTrace();
 		}
 		//drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
-	
 	}
 }
-	
-	   
 
-	
+
+
