@@ -86,30 +86,47 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void initFromFile(String file) throws IOException {
-		String fileReplace = "f(x)=";
-		ArrayList<function> file_functions = new ArrayList<function>();
-		try 
+//		String fileReplace = "f(x)=";
+//		ArrayList<function> file_functions = new ArrayList<function>();
+//		try 
+//		{
+//			BufferedReader br = new BufferedReader(new FileReader(file));
+//			String line = br.readLine();
+//			while (line != null) 
+//			{
+//				line = line.replaceAll(fileReplace,"");
+//				line.replaceAll("//s+", "");
+//				function cf1 = new ComplexFunction();
+//				cf1=cf1.initFromString(line);
+//				file_functions.add(cf1);
+//				line = br.readLine();
+//			}
+//			f_List=file_functions;
+//			br.close();
+//		} 
+//		catch (IOException e) 
+//		{
+//			e.printStackTrace();
+//			System.out.println("could not read file");
+//		}
+		
+		f_List = new ArrayList<function>();
+		BufferedReader reader;
+		reader = new BufferedReader(new FileReader(file));
+		String line = reader.readLine();
+		while(line != null)
 		{
-			BufferedReader br = new BufferedReader(new FileReader(file));
-			String line = br.readLine();
-			int i=0;
-			while (line != null) 
+			if(line.indexOf("f(x)=") != -1)
 			{
-				line = line.replaceAll(fileReplace,"");
-				line.replaceAll("//s+", "");
-				function cf1 = new ComplexFunction();
-				cf1=cf1.initFromString(line);
-				file_functions.add(cf1);
-				line = br.readLine();
+				line = line.substring(line.indexOf("f(x)=")+"f(x)=".length());
 			}
-			f_List=file_functions;
-			br.close();
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-			System.out.println("could not read file");
+			line = line.replaceAll("\\s+","");
+			ComplexFunction cf = new ComplexFunction();
+			cf.initFromString(line);
+			f_List.add(cf);
+			line = reader.readLine();
 		}
+		reader.close();
 	}
 
 	@Override
