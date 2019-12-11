@@ -32,14 +32,13 @@ import Ex1.functions;
 class Functions_GUITest {
 	public static void main(String[] a) {
 		functions data = FunctionsFactory();
-       	int w=1000, h=600, res=200;
-		Range rx = new Range(-10,10);
-		Range ry = new Range(-5,15);
-		data.drawFunctions(w,h,rx,ry,res);
+	//	int w=1000, h=600, res=200;
+	//	Range rx = new Range(-10,10);
+	//	Range ry = new Range(-5,15);
+//		data.drawFunctions(w,h,rx,ry,res);
 		String file = "function_file.txt";
 		String file2 = "function_file2.txt";
-		try 
-		{
+		try {
 			data.saveToFile(file);
 			Functions_GUI data2 = new Functions_GUI();
 			data2.initFromFile(file);
@@ -48,7 +47,7 @@ class Functions_GUITest {
 		catch(Exception e) {e.printStackTrace();}
 		
 		String JSON_param_file = "GUI_params.txt";
-	//	data.drawFunctions(JSON_param_file);
+		data.drawFunctions(JSON_param_file);
 	}
 	private functions _data=null;
 //	@BeforeAll
@@ -76,15 +75,15 @@ class Functions_GUITest {
 		
 	}
 
-	@Test
+	//@Test
 	void testDrawFunctions() {
 		//_data.drawFunctions();
 	//	fail("Not yet implemented");
 	}
 
-	//@Test
+	@Test
 	void testDrawFunctionsIntIntRangeRangeInt() {
-	//	_data.drawFunctions("GUI_params.txt");
+		_data.drawFunctions("GUI_params.txt");
 		//fail("Not yet implemented");
 	}
 	public static functions FunctionsFactory() {
@@ -101,7 +100,7 @@ class Functions_GUITest {
 		}
 		
 		ComplexFunction cf = new ComplexFunction(Operation.Plus, p1,p2);
-		ComplexFunction cf4 = new ComplexFunction("div",new Polynom("x+1"),cf3);
+		ComplexFunction cf4 = new ComplexFunction("div", new Polynom("x +1"),cf3);
 		cf4.plus(new Monom("2"));
 		ans.add(cf.copy());
 		ans.add(cf4.copy());
@@ -122,7 +121,7 @@ class Functions_GUITest {
 			min.min(f);
 		}
 		ans.add(max);
-		ans.add(min);	
+		ans.add(min);		
 		return ans;
 	}
 }

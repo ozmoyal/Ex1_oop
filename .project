@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>src/Ex1Testing/Functions_GUITest.java</name>
-			<type>1</type>
-			<location>C:/Users/עוז/OneDrive/Desktop/לימודים/שנה ב/תכנות מונחה עצמים/מטלה 1/Ex1/src/Ex1Testing/Functions_GUITest.java</location>
-		</link>
-	</linkedResources>
 </projectDescription>
