@@ -86,17 +86,14 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void initFromFile(String file) throws IOException {
-<<<<<<< HEAD
 
-=======
-		String line = "";
->>>>>>> 2335654251ec9dfc4256e8fd61661aeeb02afebe
 		String fileReplace = "f(x)=";
 		ArrayList<function> file_functions = new ArrayList<function>();
 		try 
 		{
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line = br.readLine();
+			int i=0;
 			while (line != null) 
 			{
 				String funInfo = line.replace(fileReplace,"");
@@ -106,11 +103,9 @@ public class Functions_GUI implements functions {
 				line = br.readLine();
 
 			}
-<<<<<<< HEAD
 			f_List=file_functions;
-=======
 			br.close();
->>>>>>> 2335654251ec9dfc4256e8fd61661aeeb02afebe
+
 		} 
 		catch (IOException e) 
 		{

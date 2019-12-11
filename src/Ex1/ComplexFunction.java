@@ -1,12 +1,15 @@
 package Ex1;
 
 import java.util.Iterator;
+import java.util.Random;
 
 public class ComplexFunction implements complex_function {
 
 	function right;
 	function left;
 	Operation op;
+	private Range r =new Range (-100,100);
+	
 
 	public ComplexFunction()
 	{
@@ -16,29 +19,16 @@ public class ComplexFunction implements complex_function {
 
 	public ComplexFunction(function left)
 	{
-		if(left != null)
-			this.left = left.copy();
-		else
-			this.left=null;
-
+		this.left=left;
 		this.right=null;
 		this.op=Operation.None;
-
 	}
 
-	public ComplexFunction(String op,function left,function right)
+	public ComplexFunction(String op, function left , function right)
 	{
-		if(left != null)
-			this.left = left.initFromString(left.toString());
-		else
-			this.left=null;
-
-		if(right != null)
-			this.right = right.initFromString(right.toString());
-		else
-			this.right=null;
-
-		op = op.toLowerCase();
+		this.left=left;
+		this.right=right;
+		op=op.toLowerCase();
 
 		switch(op)
 		{
@@ -72,16 +62,11 @@ public class ComplexFunction implements complex_function {
 	}
 
 	public ComplexFunction(Operation op,function left,function right)
-	{		if(left != null)
-		this.left = left.copy();
-	else
-		this.left=null;
-
-	if(right != null)
-		this.right = right.copy();
-	else
-		this.left=null;
-	this.op = op;
+	{
+		this.left=left;
+		this.right=right;
+		if(op.equals(Operation.None))	throw new IllegalArgumentException("Invalid operation");
+		this.op = op;
 	}
 
 	@Override
@@ -89,20 +74,10 @@ public class ComplexFunction implements complex_function {
 		switch(this.op.toString())
 		{
 		case "Plus":
-			if(left!=null)
-				if(right!=null)
-					return left.f(x) + right.f(x);
-			return left.f(x);
-
+			return left.f(x) + right.f(x);
 		case "Divid":
-			try 
-			{
-				return left.f(x) / right.f(x);
-			}
-			catch(ArithmeticException ex) 
-			{ 
-				System.out.println(ex.getMessage()); 
-			} 
+			if(right.f(x)==0)throw new IllegalArgumentException("0");
+			return left.f(x)/right.f(x);	
 		case "Times":
 			return left.f(x) * right.f(x);
 		case "Comp":
@@ -168,8 +143,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void plus(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.op,this.right,this.left);
-			this.left = cf1;
+			this.left =  new ComplexFunction(this.op,this.left,this.right);
 			this.right = f1;
 			this.op = Operation.Plus;
 		}
@@ -182,7 +156,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void mul(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.op,this.right,this.left);
+			function cf1 = new ComplexFunction(this.op,this.left,this.right);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Times;
@@ -212,7 +186,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void max(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.op,this.right,this.left);
+			function cf1 = new ComplexFunction(this.op,this.left,this.right);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Max;
@@ -227,7 +201,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void min(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.op,this.right,this.left);
+			function cf1 = new ComplexFunction(this.op,this.left,this.right);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Min;
@@ -241,7 +215,7 @@ public class ComplexFunction implements complex_function {
 	@Override
 	public void comp(function f1) {
 		if(this.right != null) {
-			function cf1 = new ComplexFunction(this.op,this.right,this.left);
+			function cf1 = new ComplexFunction(this.op,this.left,this.right);
 			this.left = cf1;
 			this.right = f1;
 			this.op = Operation.Comp;
@@ -281,8 +255,8 @@ public class ComplexFunction implements complex_function {
 		else
 			ans=getOp().toString();
 		ans+="("+left.toString()+",";
-		if(left!=null)
-			ans+= left.toString();
+		if(right!=null)
+			ans+= right.toString();
 		return ans+")";
 
 	}
@@ -290,11 +264,12 @@ public class ComplexFunction implements complex_function {
 	public boolean equals(Object cf1) {
 		if(!(cf1 instanceof function))
 			return false;
-		return visualEquals((function)cf1,-1,1);
+		return visualEquals((function)cf1,r);
 	}
 
-	private boolean visualEquals(function cf1,  double i, double j) {
-		while(i<=j)
+	private boolean visualEquals(function cf1, Range r) {
+		double i=r.get_min();
+		while(i<=r.get_max())
 		{
 			if(Math.abs(this.f(i)-cf1.f(i))>=Monom.EPSILON)
 				return false;
