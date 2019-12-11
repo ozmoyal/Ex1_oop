@@ -73,7 +73,7 @@ class Functions_GUITest {
 		//fail("Not yet implemented");
 	}
 
-	@Test
+	//@Test
 	void testInitFromFile() {
 		try 
 		{
@@ -100,7 +100,7 @@ class Functions_GUITest {
 		}
 	}
 	
-	@Test
+	//@Test
 	void testDrawFunctionsIntIntRangeRangeInt() {
 		functions t1 = FunctionsFactory();
 		int w = 1000;
@@ -111,18 +111,18 @@ class Functions_GUITest {
 		t1.drawFunctions(w, h, rx, ry, r);
 	}
 
-	//@Test
-//	void testDrawFunctions() {
-//		try {
-//			functions data0 = null;
-//			data0.initFromFile("function_file.txt");
-//			data0.drawFunctions("GUI_params");
-//		}
-//		catch(Exception e)
-//		{
-//			e.printStackTrace();
-//		}
-//	}
+	@Test
+	void testDrawFunctions() {
+		try {
+			Functions_GUI data0 = new Functions_GUI();
+			data0.initFromFile("function_file.txt");
+			data0.drawFunctions("GUI_params.txt");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 
 	public static functions FunctionsFactory() {
 		functions ans = new Functions_GUI();
@@ -135,12 +135,12 @@ class Functions_GUITest {
 		ComplexFunction cf3 = new ComplexFunction(p3);
 		for(int i=1;i<s3.length;i++) {
 			cf3.mul(new Polynom(s3[i]));
-			System.out.println(cf3);
+			//System.out.println(cf3);
 		}
 		
 		ComplexFunction cf = new ComplexFunction(Operation.Plus,p1,p2);
 		ComplexFunction cf4 = new ComplexFunction("div", new Polynom("x +1"),cf3);
-		System.out.println(cf4);
+		//System.out.println(cf4);
 
 		cf4.plus(new Monom("2"));
 		ans.add(cf.copy());
@@ -159,7 +159,7 @@ class Functions_GUITest {
 		int i=0;
 		while(iter.hasNext()) {
 			f = iter.next();
-			System.out.println("f"+i+" = "+f);
+			//System.out.println("f"+i+" = "+f);
 			max.max(f);
 			min.min(f);
 		}

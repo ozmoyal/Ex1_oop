@@ -129,6 +129,7 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public function initFromString(String s) {
+		s=s.replaceAll(" ", "");
 		if(s.indexOf("(") == -1 && s.indexOf(")") == -1)
 			return new Polynom(s);
 		int firstParen = s.indexOf("(");

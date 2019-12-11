@@ -94,10 +94,10 @@ public class Functions_GUI implements functions {
 			while ((line = br.readLine()) != null) 
 			{
 				String funInfo = line.replace(fileReplace,"");
-				System.out.println("funInfo ="+funInfo);
+				//System.out.println("funInfo ="+funInfo);
 				function cf1 = new ComplexFunction();
 				cf1=cf1.initFromString(funInfo);
-				System.out.println(cf1);
+				//System.out.println(cf1);
 				f_List.add(cf1);
 
 			}
