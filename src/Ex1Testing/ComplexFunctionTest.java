@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.sun.tools.sjavac.server.SysInfo;
 
 import Ex1.ComplexFunction;
 import Ex1.Operation;
