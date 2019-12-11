@@ -73,7 +73,7 @@ class Functions_GUITest {
 		//fail("Not yet implemented");
 	}
 
-	//@Test
+	@Test
 	void testInitFromFile() {
 		try 
 		{
@@ -84,20 +84,22 @@ class Functions_GUITest {
 		{
 			e.printStackTrace();
 		}
+		
 	}
 
 	//@Test
 	void testSaveToFile() {
 		try 
 		{
-			Functions_GUI fun = new Functions_GUI();
-			fun.saveToFile("function_file.txt");
+			//Functions_GUI fun = new Functions_GUI();
+			_data.saveToFile("function_file.txt");
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
+	
 	@Test
 	void testDrawFunctionsIntIntRangeRangeInt() {
 		functions t1 = FunctionsFactory();
@@ -136,7 +138,7 @@ class Functions_GUITest {
 			System.out.println(cf3);
 		}
 		
-		ComplexFunction cf = new ComplexFunction(Operation.Plus, p1,p2);
+		ComplexFunction cf = new ComplexFunction(Operation.Plus,p1,p2);
 		ComplexFunction cf4 = new ComplexFunction("div", new Polynom("x +1"),cf3);
 		System.out.println(cf4);
 

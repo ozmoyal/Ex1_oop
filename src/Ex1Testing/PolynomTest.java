@@ -15,12 +15,11 @@ class PolynomTest {
 		assertEquals(p1,p2,"error");
 	}
 
-
 	@Test
 	void testAddPolynom_able() {
-		Polynom actual= new Polynom ("2x^2-2x+3");
-		Polynom p2= new Polynom ("4x^2+4");
-		Polynom expected=new Polynom ("6x^2-2x+7");
+		Polynom actual = new Polynom ("2x^2-2x+3");
+		Polynom p2 = new Polynom ("4x^2+4");
+		Polynom expected =new Polynom ("6x^2-2x+7");
 		actual.add(p2);
 		assertEquals(expected, actual, "Add polynoms fail");
 	}
@@ -92,7 +91,6 @@ class PolynomTest {
 		double ans = p1.area(-2.5,0,Monom.EPSILON);
 		assertEquals(ans,6.510416666675519,"error");
 	}
-
 
 	@Test
 	void testMultiplyMonom() {
