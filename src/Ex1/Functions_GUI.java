@@ -17,11 +17,11 @@ import com.google.gson.Gson;
 
 public class Functions_GUI implements functions {
 	ArrayList<function> f_List;
-	
+
 	public Functions_GUI()
 	{
 		f_List= new ArrayList<function>();
-		
+
 	}
 
 	@Override
@@ -91,26 +91,34 @@ public class Functions_GUI implements functions {
 		return this.f_List.toArray(arg0);
 	}
 
+	/**
+	 * This function implements reading from file string given as following :
+	 * each line begin reading from "f(X)=" and adds each line to the collection 
+	 * in way that the function is valid.
+	 */
 	@Override
 	public void initFromFile(String file) throws IOException {
 		f_List = new ArrayList<function>();
 		BufferedReader br;
-//		try 
-//		{
-			br= new BufferedReader(new FileReader(file));
-			String line = br.readLine();
-			while (line != null) 
-			{
-				line = line.substring(line.indexOf("f(x)=")+5);
-				line = line.replaceAll("\\s+", "");
-				function cf1 = new ComplexFunction();
-				cf1 = cf1.initFromString(line);
-				f_List.add(cf1);
-				line = br.readLine();
-			}
-			br.close();
+
+		br= new BufferedReader(new FileReader(file));
+		String line = br.readLine();
+		while (line != null) 
+		{
+			line = line.substring(line.indexOf("f(x)=")+5);
+			line = line.replaceAll("\\s+", "");
+			function cf1 = new ComplexFunction();
+			cf1 = cf1.initFromString(line);
+			f_List.add(cf1);
+			line = br.readLine();
+		}
+		br.close();
 	}
 
+	/**
+	 * This function write or overwrite to the given string 
+	 * file as each function goes into a new line with "f(x)=" at the beginning.
+	 */
 	@Override
 	public void saveToFile(String file) throws IOException {
 		Iterator<function> it = f_List.iterator();
@@ -128,9 +136,13 @@ public class Functions_GUI implements functions {
 		{
 			e.printStackTrace();
 		}
-		
+
 	}
 
+	/**
+	 * This function will create a new JFrame with the given parameters 
+	 * and draws the functions that are in the collection in random colors.
+	 */
 	@Override
 	public void drawFunctions(int width, int height, Range rx, Range ry, int resolution) {
 		StdDraw.setCanvasSize(width,height);
@@ -185,6 +197,16 @@ public class Functions_GUI implements functions {
 		}
 	}
 
+	/**
+	 * This function draws as the previous function but with parameters 
+	 * from given Json file. if the function cannot read parameters 
+	 * from Json file it will draw it with the following :
+		Width:1000
+		Height:600
+		Resolution:200
+		Range_X:[-10,10]
+		Range_Y:[-5,15]
+	 */
 	@Override
 	public void drawFunctions(String json_file) {
 		Gson gson = new Gson();
@@ -201,7 +223,6 @@ public class Functions_GUI implements functions {
 			System.err.println("error");
 			drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
 		}
-		
 	}
 }
 
