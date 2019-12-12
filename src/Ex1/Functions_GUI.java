@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -25,12 +26,12 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public boolean add(function arg0) {
-		return this.f_List.add(arg0);
+		return f_List.add(arg0);
 	}
 
 	@Override
 	public boolean addAll(Collection<? extends function> arg0) {
-		return this.f_List.addAll(arg0);
+		return f_List.addAll(arg0);
 	}
 
 	@Override
@@ -52,7 +53,7 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public boolean isEmpty() {
-		return this.f_List.isEmpty();
+		return f_List.isEmpty();
 	}
 
 	@Override
@@ -77,7 +78,7 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public int size() {
-		return this.f_List.size();
+		return f_List.size();
 	}
 
 	@Override
@@ -92,79 +93,42 @@ public class Functions_GUI implements functions {
 
 	@Override
 	public void initFromFile(String file) throws IOException {
-//		String fileReplace = "f(x)=";
-//		ArrayList<function> file_functions = new ArrayList<function>();
+		f_List = new ArrayList<function>();
+		BufferedReader br;
 //		try 
 //		{
-//			BufferedReader br = new BufferedReader(new FileReader(file));
-//			String line = br.readLine();
-//			while (line != null) 
-//			{
-//				line = line.replaceAll(fileReplace,"");
-//				line.replaceAll("//s+", "");
-//				function cf1 = new ComplexFunction();
-//				cf1=cf1.initFromString(line);
-//				file_functions.add(cf1);
-//				line = br.readLine();
-//			}
-//			f_List=file_functions;
-//			br.close();
-//		} 
-//		catch (IOException e) 
-//		{
-//			e.printStackTrace();
-//			System.out.println("could not read file");
-//		}
-		
-		f_List = new ArrayList<function>();
-		BufferedReader reader;
-		try {
-			reader = new BufferedReader(new FileReader(file));
-			String line = reader.readLine();
-			while(line != null)
+			br= new BufferedReader(new FileReader(file));
+			String line = br.readLine();
+			while (line != null) 
 			{
-				if(line.contains("f(x)="))
-				{
-					line = line.substring(line.indexOf("f(x)=")+"f(x)=".length());
-				}
-				line=line.replaceAll("\\s+","");
-				if(!line.isEmpty())
-				{
-					function cf = new ComplexFunction();
-				cf=cf.initFromString(line);
-				System.out.println(cf);
-				f_List.add(cf);
-				}
-				line = reader.readLine();
+				line = line.substring(line.indexOf("f(x)=")+5);
+				line = line.replaceAll("\\s+", "");
+				function cf1 = new ComplexFunction();
+				cf1 = cf1.initFromString(line);
+				f_List.add(cf1);
+				line = br.readLine();
 			}
-			reader.close();
-		} catch (IOException e) 
-		{
-		e.printStackTrace();
-		System.out.println("could not read file");
-		}
-		
+			br.close();
 	}
 
 	@Override
 	public void saveToFile(String file) throws IOException {
+		Iterator<function> it = f_List.iterator();
 		try 
 		{
 			PrintWriter pw = new PrintWriter(new File(file));
-			StringBuilder sb = new StringBuilder();
-			for(int i=0;i<f_List.size();i++)
+			while(it.hasNext())
 			{
-				sb.append("f(x)=");
-				sb.append(f_List.get(i).toString()+"\n");
-				pw.write(sb.toString());
+				function f = it.next();
+				pw.write("f(x)="+f.toString()+"\n");
 			}
 			pw.close();
 		} 
 		catch (FileNotFoundException e) 
 		{
 			e.printStackTrace();
-			//return;
 		}
+		
 	}
 
 	@Override
