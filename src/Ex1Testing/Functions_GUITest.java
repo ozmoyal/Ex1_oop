@@ -32,12 +32,25 @@ import Ex1.functions;
 class Functions_GUITest {
 
 	public static void main(String[] a) {
+		int w=900, h=500, res=200;
+		Range rx = new Range(-10,10);
+		Range ry = new Range(-5,15);
+		try 
+		{
+			Functions_GUI t1 = new Functions_GUI();
+
+			t1.initFromFile("file2.txt");
+			t1.drawFunctions(w,h,rx,ry,res);
+		}		
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	
 		//	functions data = FunctionsFactory();
 		//	functions data0 = null;
-		//	int w=1000, h=600, res=200;
-		//	Range rx = new Range(-10,10);
-		//	Range ry = new Range(-5,15);
-		//	data.drawFunctions(w,h,rx,ry,res);
+
+//			data.drawFunctions(w,h,rx,ry,res);
 		//	String file0 = "function_file.txt";
 		//	String file = "function_file1.txt";
 		//	String file2 = "function_file2.txt";
@@ -67,10 +80,6 @@ class Functions_GUITest {
 		_data = FunctionsFactory();
 	}
 
-	//@Test
-	void testFunctions_GUI() {
-		//fail("Not yet implemented");
-	}
 
 	//@Test
 	void testInitFromFile() {
@@ -115,7 +124,7 @@ class Functions_GUITest {
 	}
 
 
-	@Test
+	//@Test
 	void testDrawFunctionsIntIntRangeRangeInt() {
 		try 
 		{
@@ -146,8 +155,6 @@ class Functions_GUITest {
 		{
 			e.printStackTrace();
 		}
-
-
 	}
 
 	public static functions FunctionsFactory() {
