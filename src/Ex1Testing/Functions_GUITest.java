@@ -30,31 +30,21 @@ import Ex1.functions;
  *
  */
 class Functions_GUITest {
-	//	public static void main(String[] a) {
-	//	functions data = FunctionsFactory();
-	//	functions data0 = null;
-	//	int w=1000, h=600, res=200;
-	//	Range rx = new Range(-10,10);
-	//	Range ry = new Range(-5,15);
-	//	data.drawFunctions(w,h,rx,ry,res);
-	//	String file0 = "function_file.txt";
-	//	String file = "function_file1.txt";
-	//	String file2 = "function_file2.txt";
-	//
-	//	try {
-	//		//data0.initFromFile(file);
-	//		//data.saveToFile(file);
-	//		//Functions_GUI data2 = new Functions_GUI();
-	//		//data2.initFromFile(file);
-	//		//data.saveToFile(file2);
-	//		data0.drawFunctions("GUI_params.txt");
-	//	}
-	//	catch(Exception e) {e.printStackTrace();}
-	//	
-	//	String JSON_param_file = "GUI_params.txt";
-	////	data.drawFunctions(JSON_param_file);
-	//	
-	//}
+
+	public static void main(String[] a) {
+		functions data = FunctionsFactory();
+		int w=1000, h=600, res=200;
+		Range rx = new Range(-10,10);
+		Range ry = new Range(-5,15);
+		data.drawFunctions(w,h,rx,ry,res);
+		String file0 = "function_file.txt";
+		String file = "function_file1.txt";
+		String file2 = "function_file2.txt";
+
+		String JSON_param_file = "GUI_params.txt";
+		data.drawFunctions(JSON_param_file);
+
+	}
 	private functions _data = null;
 	//@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -84,6 +74,8 @@ class Functions_GUITest {
 		}
 
 	}
+	//@Test
+
 
 	//@Test
 	void testSaveToFile() {
@@ -98,7 +90,7 @@ class Functions_GUITest {
 		}
 	}
 
-	//@Test
+	@Test
 	void testDrawFunctionsIntIntRangeRangeInt() {
 		functions t1 = FunctionsFactory();
 		int w = 1000;
@@ -108,36 +100,24 @@ class Functions_GUITest {
 		Range ry = new Range(-5,15);
 		t1.drawFunctions(w, h, rx, ry, r);
 	}
-	
+
 	@Test
 	void testDrawFromFile() {
 		try 
 		{
 			Functions_GUI t1 = new Functions_GUI();
 			t1.initFromFile("test1.txt");
+			t1.saveToFile("test2.txt");
 			t1.drawFunctions("GUI_params.txt");
 		}		
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		
 
-		
+
+
 	}
-
-	//@Test
-	//void testDrawFunctions() {
-	//	try {
-	//		functions data0 = null;
-	//		data0.initFromFile("function_file.txt");
-	//		data0.drawFunctions("GUI_params");
-	//	}
-	//	catch(Exception e)
-	//	{
-	//		e.printStackTrace();
-	//	}
-	//}
 
 	public static functions FunctionsFactory() {
 		functions ans = new Functions_GUI();
@@ -174,7 +154,6 @@ class Functions_GUITest {
 		int i=0;
 		while(iter.hasNext()) {
 			f = iter.next();
-			System.out.println("f"+i+" = "+f);
 			max.max(f);
 			min.min(f);
 		}

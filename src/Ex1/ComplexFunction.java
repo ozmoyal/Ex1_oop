@@ -14,7 +14,7 @@ public class ComplexFunction implements complex_function {
 	public ComplexFunction()
 	{
 		this.right = this.left = null;
-		this.op = Operation.Error;
+		this.op = Operation.None;
 	}
 
 	public ComplexFunction(function left)
@@ -34,6 +34,7 @@ public class ComplexFunction implements complex_function {
 			this.right=right;
 		else
 			throw new IllegalArgumentException("Invalid function");
+		
 		op=op.toLowerCase();
 
 		switch(op)
@@ -118,11 +119,9 @@ public class ComplexFunction implements complex_function {
 
 	@Override
 	public function initFromString(String s) {
-		s=s.replaceAll("//s+" , "");
 		if(s.indexOf("(") == -1 && s.indexOf(")") == -1) 
 		{
-			Polynom m = new Polynom();
-			return m.initFromString(s);
+			return new Polynom (s);
 		}
 		int firstParen = s.indexOf("(");
 		int indexSep = comIndex(s,firstParen);
@@ -261,27 +260,24 @@ public class ComplexFunction implements complex_function {
 		return this.op;
 	}
 
-	public String toString() {
+	public String toString() 
+	{
+		
 		if(this.op.equals(Operation.None))
-		{
-			if(left!=null)
-				return left.toString();
-		}
-		String ans="";
-		if(getOp().toString().equals("Times"))
-			ans="Mul";
-		else if (getOp().toString().equals("Divid"))
+			if(this.left()!=null)
+				return this.left.toString();
+		if((left== null)||(right==null)) throw new IllegalArgumentException("Invalid function");
+		String ans ="";
+		if(this.op.equals(Operation.Divid))
 			ans="Div";
+		else if(this.op.equals(Operation.Times))
+			ans="Mul";
 		else
-			ans=getOp().toString();
-		if(left !=null)
-		{
-			ans+="("+left.toString()+",";
-			if(right!=null)
-				ans+= right.toString();
-			return ans+")";
-		}
-		return "";
+			ans=this.op.toString();
+		ans+="("+this.left.toString()+","+this.right.toString()+")";
+		return ans;
+
+
 	}
 	public boolean equals(Object cf1) {
 		if(!(cf1 instanceof function))

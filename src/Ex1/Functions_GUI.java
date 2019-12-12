@@ -15,7 +15,13 @@ import com.google.gson.Gson;
 
 
 public class Functions_GUI implements functions {
-	ArrayList<function> f_List = new ArrayList<function>();
+	ArrayList<function> f_List;
+	
+	public Functions_GUI()
+	{
+		f_List= new ArrayList<function>();
+		
+	}
 
 	@Override
 	public boolean add(function arg0) {
@@ -117,14 +123,18 @@ public class Functions_GUI implements functions {
 			String line = reader.readLine();
 			while(line != null)
 			{
-				if(line.indexOf("f(x)=") != -1)
+				if(line.contains("f(x)="))
 				{
 					line = line.substring(line.indexOf("f(x)=")+"f(x)=".length());
 				}
-				line = line.replaceAll("\\s+","");
-				ComplexFunction cf = new ComplexFunction();
-				cf.initFromString(line);
+				line=line.replaceAll("\\s+","");
+				if(!line.isEmpty())
+				{
+					function cf = new ComplexFunction();
+				cf=cf.initFromString(line);
+				System.out.println(cf);
 				f_List.add(cf);
+				}
 				line = reader.readLine();
 			}
 			reader.close();
@@ -200,7 +210,6 @@ public class Functions_GUI implements functions {
 			for(int j=0;j<resolution;j++)
 			{
 				y[0][j]=help;
-				System.out.println(f_List.get(i).toString());
 				y[1][j]=f_List.get(i).f(y[0][j]);
 				help=help+steps;
 			}
