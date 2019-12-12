@@ -98,7 +98,7 @@ In the right function set NULL ,and in the Operation None
 
 	}
 /*
- * 
+ * returns the Y value of ComplexFunction with the given X
  */
 	@Override
 	public double f(double x) {
@@ -133,13 +133,16 @@ In the right function set NULL ,and in the Operation None
 			throw new IllegalArgumentException("Invalid operation");
 		}
 	}
-
+/*
+ * returns a function created from the given String
+ */
 	@Override
 	public function initFromString(String s) {
 		if(s.indexOf("(") == -1 && s.indexOf(")") == -1) 
 		{
 			return new Polynom (s);
 		}
+		s=s.replaceAll("\\s+","");
 		int firstParen = s.indexOf("(");
 		int indexSep = comIndex(s,firstParen);
 		String oper = s.substring(0, firstParen);
@@ -304,9 +307,12 @@ In the right function set NULL ,and in the Operation None
 			return false;
 		return visualEquals((function)cf1,r);
 	}
-	//**An auxiliary function for the equality function which receives a range defined at
-	//	the top of the class and calculates the X value in both functions, and compares the two functions,
-	//If F (X) obtained is different, the function returns false, otherwise true.**//
+	/*
+	 * An auxiliary function for the equality function which receives a range defined at
+	*the top of the class and calculates the X value in both functions, and compares the two functions,
+       *If F (X) obtained is different, the function returns false, otherwise true.
+	 */
+	
 	private boolean visualEquals(function cf1, Range r) {
 		double i=r.get_min();
 		while(i<=r.get_max())

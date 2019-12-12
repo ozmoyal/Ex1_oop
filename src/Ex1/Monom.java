@@ -50,7 +50,7 @@ public class Monom implements function{
 	//Example of possible strings "2x^2" /"4x"/"x"/"2"
 	public Monom(String s) {
 		s.toLowerCase();
-		s=s.replaceAll(" ", "");
+		s=s.replaceAll("\\s+","");
 		if(s.contains("^"))
 		{
 			if(s.contains("x^"))
@@ -120,14 +120,19 @@ public class Monom implements function{
 
 
 	}
-	//**adding monoms if the power is different throw Err
+	/*
+	 * add between polynomials
+	 * if the power is different throw Err
+	 */
 	public void add(Monom m) {
 		if(this.get_power() != m.get_power())
 			throw new RuntimeException("ERR the power of Monom should not be difrfrent "); 
 		this.set_coefficient(this.get_coefficient()+m.get_coefficient());
 
 	}
-	//**adding monoms
+	/*
+	 * multiply between polynomials
+	 */
 	public void multipy(Monom d) {
 		this.set_coefficient(this.get_coefficient()*d.get_coefficient());
 		this.set_power(this.get_power()+d.get_power());}
@@ -144,7 +149,9 @@ public class Monom implements function{
 			ans=""+String.valueOf(this.get_coefficient()) +"x^"+this.get_power();
 		return ans;
 	}
-	//**boolean function Compares the monoms up to epsilon
+	/*
+	 * boolean function Compares between Object and Monom to epsilon
+	 */
 	public boolean equals(Object m)
 	{
 		if(!(m instanceof Monom)) {

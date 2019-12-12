@@ -44,6 +44,7 @@ public class Polynom implements Polynom_able{
 	 */
 	public Polynom(String s) 
 	{
+		s=s.replaceAll("\\s+", "");
 		monoms=new ArrayList<Monom>();
 		String str = ""+s.charAt(0);
 		int j=0;
