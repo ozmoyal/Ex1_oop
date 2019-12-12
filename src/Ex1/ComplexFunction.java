@@ -132,9 +132,12 @@ public class ComplexFunction implements complex_function {
 		ComplexFunction ans = new ComplexFunction(oper,left,right);
 		return ans;
 	}
-	//This function is an auxiliary function for the initfromstring function,
-	//	which returns the comma index, which divides
-	//	the complex function into a left function and a right function.
+	/*
+	 * This function is an auxiliary function for the initfromstring function,
+	 * which returns the comma index, which divides
+	 * the complex function into a left function and a right function.
+	 */
+
 	private int comIndex(String s, int firstParen) {
 		int paren = 1;
 		int com = 0;

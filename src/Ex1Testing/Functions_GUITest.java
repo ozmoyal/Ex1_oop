@@ -30,7 +30,7 @@ import Ex1.functions;
  *
  */
 class Functions_GUITest {
-	//	public static void main(String[] a) {
+		public static void main(String[] a) {
 	//	functions data = FunctionsFactory();
 	//	functions data0 = null;
 	//	int w=1000, h=600, res=200;
@@ -54,14 +54,14 @@ class Functions_GUITest {
 	//	String JSON_param_file = "GUI_params.txt";
 	////	data.drawFunctions(JSON_param_file);
 	//	
-	//}
+	}
 	private functions _data = null;
 	//@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 
 	}
 
-	//@BeforeEach
+	@BeforeEach
 	void setUp() throws Exception {
 		_data = FunctionsFactory();
 	}
@@ -76,13 +76,12 @@ class Functions_GUITest {
 		try 
 		{
 			Functions_GUI fun = new Functions_GUI();
-			fun.initFromFile("function_file.txt");
+			fun.initFromFile("test1.txt");
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-
 	}
 
 	//@Test
@@ -97,33 +96,51 @@ class Functions_GUITest {
 			e.printStackTrace();
 		}
 	}
-
+	
 	//@Test
+	void testSaveToInitToFile() {
+		try 
+		{
+			Functions_GUI fun = new Functions_GUI();
+			fun.initFromFile("test1.txt");
+			fun.saveToFile("file2.txt");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	@Test
 	void testDrawFunctionsIntIntRangeRangeInt() {
-		functions t1 = FunctionsFactory();
-		int w = 1000;
-		int h = 600;
-		int r = 200;
-		Range rx = new Range(-20,20);
-		Range ry = new Range(-5,15);
-		t1.drawFunctions(w, h, rx, ry, r);
+		try 
+		{
+			functions t1 = FunctionsFactory();
+			int w = 1000;
+			int h = 600;
+			int r = 200;
+			Range rx = new Range(-20,20);
+			Range ry = new Range(-5,15);
+			t1.drawFunctions(w, h, rx, ry, r);
+		} 
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
-	@Test
+	//@Test
 	void testDrawFromFile() {
 		try 
 		{
 			Functions_GUI t1 = new Functions_GUI();
-			t1.initFromFile("test1.txt");
+			t1.initFromFile("file2.txt");
 			t1.drawFunctions("GUI_params.txt");
 		}		
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		
-
-		
 	}
 
 	//@Test
