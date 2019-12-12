@@ -8,8 +8,8 @@ public class ComplexFunction implements complex_function {
 	function right;
 	function left;
 	Operation op;
-	private Range r =new Range (-100,100);
-	
+	private Range r =new Range (-20,20); //for equals use
+
 
 	public ComplexFunction()
 	{
@@ -26,8 +26,14 @@ public class ComplexFunction implements complex_function {
 
 	public ComplexFunction(String op, function left , function right)
 	{
-		this.left=left;
-		this.right=right;
+		if(left !=null)
+			this.left=left;
+		else
+			throw new IllegalArgumentException("Invalid function");
+		if(right !=null)
+			this.right=right;
+		else
+			throw new IllegalArgumentException("Invalid function");
 		op=op.toLowerCase();
 
 		switch(op)
@@ -63,8 +69,14 @@ public class ComplexFunction implements complex_function {
 
 	public ComplexFunction(Operation op,function left,function right)
 	{
-		this.left=left;
-		this.right=right;
+		if(left !=null)
+			this.left=left;
+		else
+			throw new IllegalArgumentException("Invalid function");
+		if(right !=null)
+			this.right=right;
+		else
+			throw new IllegalArgumentException("Invalid function");
 		if(op.equals(Operation.None))	throw new IllegalArgumentException("Invalid operation");
 		this.op = op;
 
@@ -120,7 +132,9 @@ public class ComplexFunction implements complex_function {
 		ComplexFunction ans = new ComplexFunction(oper,left,right);
 		return ans;
 	}
-
+	//This function is an auxiliary function for the initfromstring function,
+	//	which returns the comma index, which divides
+	//	the complex function into a left function and a right function.
 	private int comIndex(String s, int firstParen) {
 		int paren = 1;
 		int com = 0;
@@ -262,28 +276,28 @@ public class ComplexFunction implements complex_function {
 			ans=getOp().toString();
 		if(left !=null)
 		{
-		ans+="("+left.toString()+",";
-		if(right!=null)
-			ans+= right.toString();
-		return ans+")";
-
-	}
+			ans+="("+left.toString()+",";
+			if(right!=null)
+				ans+= right.toString();
+			return ans+")";
+		}
 		return "";
 	}
-
 	public boolean equals(Object cf1) {
 		if(!(cf1 instanceof function))
 			return false;
 		return visualEquals((function)cf1,r);
 	}
-
+	//**An auxiliary function for the equality function which receives a range defined at
+	//	the top of the class and calculates the X value in both functions, and compares the two functions,
+	//If F (X) obtained is different, the function returns false, otherwise true.**//
 	private boolean visualEquals(function cf1, Range r) {
 		double i=r.get_min();
 		while(i<=r.get_max())
 		{
 			if(Math.abs(this.f(i)-cf1.f(i))>=Monom.EPSILON)
 				return false;
-			i+=Monom.EPSILON;
+			i+=0.0001;
 		}
 		return true;
 	}
