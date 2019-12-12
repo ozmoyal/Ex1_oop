@@ -10,20 +10,33 @@ public class ComplexFunction implements complex_function {
 	Operation op;
 	private Range r =new Range (-20,20); //for equals use
 
-
+/**
+ *   empty constructor
+ *   left=right=null
+ *   Operation None 
+ */
 	public ComplexFunction()
 	{
 		this.right = this.left = null;
 		this.op = Operation.None;
 	}
-
+/**
+ * constructor that get one  function and  set the function in the left side,
+In the right function set NULL ,and in the Operation None
+ * @param left
+ */
 	public ComplexFunction(function left)
 	{
 		this.left=left;
 		this.right=null;
 		this.op=Operation.None;
 	}
-
+/**
+ * basic constructor that get the Operation as a string
+ * @param op
+ * @param left
+ * @param right
+ */
 	public ComplexFunction(String op, function left , function right)
 	{
 		if(left !=null)
@@ -67,7 +80,9 @@ public class ComplexFunction implements complex_function {
 			break;
 		}
 	}
-
+/*
+ * basic constructor 
+ */
 	public ComplexFunction(Operation op,function left,function right)
 	{
 		if(left !=null)
@@ -82,7 +97,9 @@ public class ComplexFunction implements complex_function {
 		this.op = op;
 
 	}
-
+/*
+ * 
+ */
 	@Override
 	public double f(double x) {
 		switch(this.op.toString())
