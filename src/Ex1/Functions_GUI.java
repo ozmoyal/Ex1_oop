@@ -112,21 +112,28 @@ public class Functions_GUI implements functions {
 		
 		f_List = new ArrayList<function>();
 		BufferedReader reader;
-		reader = new BufferedReader(new FileReader(file));
-		String line = reader.readLine();
-		while(line != null)
-		{
-			if(line.indexOf("f(x)=") != -1)
+		try {
+			reader = new BufferedReader(new FileReader(file));
+			String line = reader.readLine();
+			while(line != null)
 			{
-				line = line.substring(line.indexOf("f(x)=")+"f(x)=".length());
+				if(line.indexOf("f(x)=") != -1)
+				{
+					line = line.substring(line.indexOf("f(x)=")+"f(x)=".length());
+				}
+				line = line.replaceAll("\\s+","");
+				ComplexFunction cf = new ComplexFunction();
+				cf.initFromString(line);
+				f_List.add(cf);
+				line = reader.readLine();
 			}
-			line = line.replaceAll("\\s+","");
-			ComplexFunction cf = new ComplexFunction();
-			cf.initFromString(line);
-			f_List.add(cf);
-			line = reader.readLine();
+			reader.close();
+		} catch (IOException e) 
+		{
+		e.printStackTrace();
+		System.out.println("could not read file");
 		}
-		reader.close();
+		
 	}
 
 	@Override
@@ -188,14 +195,14 @@ public class Functions_GUI implements functions {
 		{
 			double [][] y=new double[2][resolution];
 			double help=rx.get_min();
-			System.out.println(f_List.get(i).toString());
+			//System.out.println(f_List.get(i).toString());
 			Color[] Colors = {Color.blue, Color.cyan, Color.MAGENTA, Color.ORANGE, Color.red, Color.GREEN, Color.PINK}; 
 			for(int j=0;j<resolution;j++)
 			{
 				y[0][j]=help;
+				System.out.println(f_List.get(i).toString());
 				y[1][j]=f_List.get(i).f(y[0][j]);
 				help=help+steps;
-
 			}
 			StdDraw.setPenColor(Colors[i%Colors.length]);
 			StdDraw.setPenRadius(0.005);
@@ -214,14 +221,14 @@ public class Functions_GUI implements functions {
 			GUI_param parm    = gson.fromJson(reader,GUI_param.class);
 			Range rangeX      = new Range(parm.Range_X[0],parm.Range_X[1]);
 			Range rangeY      = new Range(parm.Range_Y[0],parm.Range_Y[1]);
-
 			drawFunctions(parm.Width, parm.Height, rangeX, rangeY, parm.Resolution);
 			return;
 		} 
 		catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.err.println("error");
+			drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
 		}
-		//drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
+		
 	}
 }
 

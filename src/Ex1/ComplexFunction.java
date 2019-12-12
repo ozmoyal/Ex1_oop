@@ -260,11 +260,15 @@ public class ComplexFunction implements complex_function {
 			ans="Div";
 		else
 			ans=getOp().toString();
+		if(left !=null)
+		{
 		ans+="("+left.toString()+",";
 		if(right!=null)
 			ans+= right.toString();
 		return ans+")";
 
+	}
+		return "";
 	}
 
 	public boolean equals(Object cf1) {

@@ -30,62 +30,115 @@ import Ex1.functions;
  *
  */
 class Functions_GUITest {
-	public static void main(String[] a) {
-		functions data = FunctionsFactory();
+	//	public static void main(String[] a) {
+	//	functions data = FunctionsFactory();
+	//	functions data0 = null;
 	//	int w=1000, h=600, res=200;
 	//	Range rx = new Range(-10,10);
 	//	Range ry = new Range(-5,15);
-//		data.drawFunctions(w,h,rx,ry,res);
-		String file = "function_file.txt";
-		String file2 = "function_file2.txt";
-		try {
-			data.saveToFile(file);
-			Functions_GUI data2 = new Functions_GUI();
-			data2.initFromFile(file);
-			data.saveToFile(file2);
-		}
-		catch(Exception e) {e.printStackTrace();}
-		
-		String JSON_param_file = "GUI_params.txt";
-		data.drawFunctions(JSON_param_file);
-	}
-	private functions _data=null;
-//	@BeforeAll
-//	static void setUpBeforeClass() throws Exception {
-//	}
+	//	data.drawFunctions(w,h,rx,ry,res);
+	//	String file0 = "function_file.txt";
+	//	String file = "function_file1.txt";
+	//	String file2 = "function_file2.txt";
+	//
+	//	try {
+	//		//data0.initFromFile(file);
+	//		//data.saveToFile(file);
+	//		//Functions_GUI data2 = new Functions_GUI();
+	//		//data2.initFromFile(file);
+	//		//data.saveToFile(file2);
+	//		data0.drawFunctions("GUI_params.txt");
+	//	}
+	//	catch(Exception e) {e.printStackTrace();}
+	//	
+	//	String JSON_param_file = "GUI_params.txt";
+	////	data.drawFunctions(JSON_param_file);
+	//	
+	//}
+	private functions _data = null;
+	//@BeforeAll
+	static void setUpBeforeClass() throws Exception {
 
-	@BeforeEach
+	}
+
+	//@BeforeEach
 	void setUp() throws Exception {
 		_data = FunctionsFactory();
 	}
 
 	//@Test
 	void testFunctions_GUI() {
-	//	fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 	//@Test
 	void testInitFromFile() {
-	//	fail("Not yet implemented");
+		try 
+		{
+			Functions_GUI fun = new Functions_GUI();
+			fun.initFromFile("function_file.txt");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+
 	}
 
 	//@Test
 	void testSaveToFile() {
+		try 
+		{
+			//Functions_GUI fun = new Functions_GUI();
+			_data.saveToFile("function_file.txt");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	//@Test
+	void testDrawFunctionsIntIntRangeRangeInt() {
+		functions t1 = FunctionsFactory();
+		int w = 1000;
+		int h = 600;
+		int r = 200;
+		Range rx = new Range(-20,20);
+		Range ry = new Range(-5,15);
+		t1.drawFunctions(w, h, rx, ry, r);
+	}
+	
+	@Test
+	void testDrawFromFile() {
+		try 
+		{
+			Functions_GUI t1 = new Functions_GUI();
+			t1.initFromFile("test1.txt");
+			t1.drawFunctions("GUI_params.txt");
+		}		
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
+
 		
 	}
 
 	//@Test
-	void testDrawFunctions() {
-		//_data.drawFunctions();
-	//	fail("Not yet implemented");
-	}
+	//void testDrawFunctions() {
+	//	try {
+	//		functions data0 = null;
+	//		data0.initFromFile("function_file.txt");
+	//		data0.drawFunctions("GUI_params");
+	//	}
+	//	catch(Exception e)
+	//	{
+	//		e.printStackTrace();
+	//	}
+	//}
 
-	@Test
-	void testDrawFunctionsIntIntRangeRangeInt() {
-		_data.drawFunctions("GUI_params.txt");
-		//fail("Not yet implemented");
-	}
 	public static functions FunctionsFactory() {
 		functions ans = new Functions_GUI();
 		String s1 = "3.1 +2.4x^2 -x^4";
@@ -97,10 +150,13 @@ class Functions_GUITest {
 		ComplexFunction cf3 = new ComplexFunction(p3);
 		for(int i=1;i<s3.length;i++) {
 			cf3.mul(new Polynom(s3[i]));
+			System.out.println(cf3);
 		}
-		
-		ComplexFunction cf = new ComplexFunction(Operation.Plus, p1,p2);
+
+		ComplexFunction cf = new ComplexFunction(Operation.Plus,p1,p2);
 		ComplexFunction cf4 = new ComplexFunction("div", new Polynom("x +1"),cf3);
+		System.out.println(cf4);
+
 		cf4.plus(new Monom("2"));
 		ans.add(cf.copy());
 		ans.add(cf4.copy());
@@ -115,8 +171,10 @@ class Functions_GUITest {
 		function f = iter.next();
 		ComplexFunction max = new ComplexFunction(f);
 		ComplexFunction min = new ComplexFunction(f);
+		int i=0;
 		while(iter.hasNext()) {
 			f = iter.next();
+			System.out.println("f"+i+" = "+f);
 			max.max(f);
 			min.min(f);
 		}
