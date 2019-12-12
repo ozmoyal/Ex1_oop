@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 
 import Ex1.ComplexFunction;
+import Ex1.Monom;
 import Ex1.Operation;
 import Ex1.Polynom;
 import Ex1.function;
@@ -32,8 +33,6 @@ class ComplexFunctionTest {
 		Polynom p =new Polynom("x");
 		ComplexFunction actual = new ComplexFunction("plus",p1,p1);
 		expected=expected.initFromString(actual.toString());
-		ComplexFunction cf=new 	ComplexFunction("plus",p,expected);
-		System.out.println(cf);
 		assertEquals(expected, actual,"error");
 	}
 

@@ -219,9 +219,10 @@ public class Functions_GUI implements functions {
 			return;
 		} 
 		catch (FileNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
 		}
-		//drawFunctions(1000, 600, new Range(-10,10), new Range(-5,15), 200);
+		
 	}
 }
 
